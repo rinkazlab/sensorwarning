@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV AMAN - Industrial IoT & Early Warning Telemetry | sensorwarning.id</title>
+    
+    <!-- Favicon (A-Logo Green with Dark Background) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23060913'/><text x='50' y='73' font-family='system-ui, sans-serif' font-weight='900' font-size='68' fill='%2300FF66' text-anchor='middle'>A</text></svg>">
+
+    <!-- Tailwind CSS v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#060913',
+                        darkcard: 'rgba(255, 255, 255, 0.03)',
+                        cybergreen: '#00FF66',
+                        mintgreen: '#10B981',
+                        cyberwarning: '#FFB800',
+                        cyberdanger: '#FF3366'
+                    },
+                    boxShadow: {
+                        'neon-glow': '0 0 20px rgba(0, 255, 102, 0.25)',
+                        'neon-glow-hover': '0 0 35px rgba(0, 255, 102, 0.5)',
+                        'neon-danger': '0 0 25px rgba(255, 51, 102, 0.4)',
+                        'neon-warning': '0 0 25px rgba(255, 184, 0, 0.4)',
+                    },
+                    animation: {
+                        'infinite-scroll': 'infinite-scroll 30s linear infinite',
+                        'fade-in': 'fadeIn 0.4s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        'infinite-scroll': {
+                            from: { transform: 'translateX(0)' },
+                            to: { transform: 'translateX(-50%)' },
+                        },
+                        fadeIn: {
+                            from: { opacity: '0', transform: 'translateY(10px)' },
+                            to: { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #060913;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 255, 102, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 30%, #00FF66 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .view-pane {
+            display: none;
+        }
+        .view-pane.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060913;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00FF66;
+        }
+    </style>
+</head>
+<body class="text-slate-200 antialiased selection:bg-cybergreen/30 selection:text-cybergreen flex flex-col min-h-screen">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="fixed top-0 left-0 w-full z-40 glass-card bg-darkbg/70 border-b border-white/5 backdrop-blur-md transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#/home" class="flex items-center gap-2">
+                    <span class="text-2xl font-extrabold tracking-wider text-white">CV <span class="text-cybergreen shadow-neon-glow">AMAN</span></span>
+                    <span class="text-xs text-white/40 border border-white/10 px-2 py-0.5 rounded-full hidden sm:inline-block">sensorwarning.id</span>
+                </a>
+                
+                <!-- Desktop Navigation Links (SPA Router Links) -->
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="#/home" data-nav-link="home" class="nav-item text-sm font-medium transition-all duration-300">Beranda</a>
+                    <a href="#/solusi" data-nav-link="solusi" class="nav-item text-sm font-medium text-slate-400 hover:text-cybergreen transition-all duration-300">Solusi IoT</a>
+                    <a href="#/demo" data-nav-link="demo" class="nav-item text-sm font-medium text-slate-400 hover:text-cybergreen transition-all duration-300">Live Demo</a>
+                    <a href="#/keunggulan" data-nav-link="keunggulan" class="nav-item text-sm font-medium text-slate-400 hover:text-cybergreen transition-all duration-300">Keunggulan</a>
+                    <a href="#/kontak" data-nav-link="kontak" class="nav-item text-sm font-medium text-slate-400 hover:text-cybergreen transition-all duration-300">Hubungi Kami</a>
+                </div>
+
+                <!-- Desktop CTA Button -->
+                <div class="hidden md:flex items-center">
+                    <a href="#/demo" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-cybergreen text-darkbg font-bold text-sm shadow-neon-glow hover:shadow-neon-glow-hover hover:scale-[1.02] transition-all duration-300">
+                        Akses Sistem EWS
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-400 hover:text-white p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                            <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-darkbg/95 px-4 pt-2 pb-6 space-y-3">
+            <a href="#/home" data-nav-link="home" class="mobile-nav-item block px-3 py-2 rounded-lg text-base font-medium">Beranda</a>
+            <a href="#/solusi" data-nav-link="solusi" class="mobile-nav-item block px-3 py-2 rounded-lg text-base font-medium text-slate-400 hover:text-cybergreen hover:bg-white/5">Solusi IoT</a>
+            <a href="#/demo" data-nav-link="demo" class="mobile-nav-item block px-3 py-2 rounded-lg text-base font-medium text-slate-400 hover:text-cybergreen hover:bg-white/5">Live Demo</a>
+            <a href="#/keunggulan" data-nav-link="keunggulan" class="mobile-nav-item block px-3 py-2 rounded-lg text-base font-medium text-slate-400 hover:text-cybergreen hover:bg-white/5">Keunggulan</a>
+            <a href="#/kontak" data-nav-link="kontak" class="mobile-nav-item block px-3 py-2 rounded-lg text-base font-medium text-slate-400 hover:text-cybergreen hover:bg-white/5">Hubungi Kami</a>
+            <a href="#/demo" class="block text-center px-4 py-3 rounded-xl bg-cybergreen text-darkbg font-bold shadow-neon-glow">
+                Masuk EWS Dashboard
+            </a>
+        </div>
+    </nav>
+
+    <!-- MAIN APP WRAPPER FOR MULTI-PAGE VIEWS -->
+    <main class="flex-grow pt-20">
+
+        <!-- VIEW 1: HOME PAGE -->
+        <div id="view-home" class="view-pane active">
+            <!-- HERO SECTION -->
+            <section class="relative py-20 md:py-32 overflow-hidden flex flex-col justify-center min-h-[85vh]">
+                <!-- Ambient Background Glows -->
+                <div class="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-cybergreen/10 rounded-full blur-[120px] pointer-events-none"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-emerald-600/10 rounded-full blur-[150px] pointer-events-none"></div>
+                
+                <!-- Thin Wave Grid Background (Telemetry Pattern SVG) -->
+                <div class="absolute inset-0 pointer-events-none opacity-40 select-none">
+                    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                        <defs>
+                            <!-- Grid Pattern Definition -->
+                            <pattern id="thin-wave-grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                                <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(0, 255, 102, 0.04)" stroke-width="0.5"/>
+                            </pattern>
+                            <!-- Ambient Glow for Wave Lines -->
+                            <filter id="cyber-glow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="2" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                            </filter>
+                        </defs>
+                        <!-- Grid Base Layer -->
+                        <rect width="100%" height="100%" fill="url(#thin-wave-grid)" />
+                        <!-- Sinusoidal Waves Representing Telemetry Signals -->
+                        <path d="M -100,200 Q 200,50 500,200 T 1100,200 T 1700,200 T 2300,200" fill="none" stroke="rgba(0, 255, 102, 0.15)" stroke-width="1" filter="url(#cyber-glow)" />
+                        <path d="M -100,230 Q 300,120 700,230 T 1500,230 T 2300,230" fill="none" stroke="rgba(16, 185, 129, 0.08)" stroke-width="0.8" />
+                        <path d="M -100,170 Q 150,90 400,170 T 900,170 T 1400,170 T 1900,170" fill="none" stroke="rgba(0, 255, 102, 0.05)" stroke-width="1.2" stroke-dasharray="5,10" />
+                    </svg>
+                </div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                    <!-- Badge -->
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card bg-white/5 text-xs sm:text-sm text-cybergreen font-medium mb-6">
+                        <span class="w-2 h-2 rounded-full bg-cybergreen animate-ping"></span>
+                        <span>Mendorong Tren Keselamatan Industri Telemetri 2026</span>
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+                        <span class="text-gradient">Industrial IoT &</span><br class="hidden sm:inline">
+                        <span class="text-white">Predictive</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-cybergreen to-emerald-400 shadow-sm">Sensor Warning</span>
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <p class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-slate-400 mb-10 leading-relaxed">
+                        Transformasi digital tanpa batas bersama <strong class="text-white">CV AMAN</strong>. Amankan infrastruktur kritis pertambangan, energi, dan industri berat Anda lewat deteksi dini berbasis telemetri real-time di <span class="text-cybergreen font-semibold">sensorwarning.id</span>.
+                    </p>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                        <a href="#/solusi" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-600 to-cybergreen text-darkbg font-bold text-base shadow-neon-glow hover:shadow-neon-glow-hover hover:scale-[1.03] transition-all duration-300">
+                            Jelajahi Solusi Utama
+                        </a>
+                        <a href="#/demo" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card text-white font-medium text-base hover:bg-white/10 transition-all duration-300 border border-white/10">
+                            Uji Coba Demo Sistem
+                        </a>
+                    </div>
+
+                    <!-- Stats Showcase -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-white/5">
+                        <div class="p-4">
+                            <div class="text-2xl sm:text-4xl font-bold text-white mb-1">&lt; 1 mm</div>
+                            <div class="text-xs sm:text-sm text-slate-500">Akurasi Sensor Extensometer</div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-2xl sm:text-4xl font-bold text-cybergreen mb-1">100%</div>
+                            <div class="text-xs sm:text-sm text-slate-500">Integrasi Server KLHK RI</div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-2xl sm:text-4xl font-bold text-white mb-1">4.000 m</div>
+                            <div class="text-xs sm:text-sm text-slate-500">Jangkauan Telemetri Nirkabel</div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-2xl sm:text-4xl font-bold text-cybergreen mb-1">300+</div>
+                            <div class="text-xs sm:text-sm text-slate-500">Unit Perangkat Terpasang</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TRUSTED CLIENTS / SOCIAL PROOF SECTION (ANIMATED) -->
+            <section class="py-12 relative border-t border-b border-white/5 bg-darkbg/80 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-6">
+                    <p class="text-xs font-bold text-slate-500 tracking-widest uppercase">Dipercaya oleh Pemimpin Industri Terkemuka</p>
+                </div>
+                
+                <!-- Marquee Container -->
+                <div class="relative w-full overflow-hidden group">
+                    <div class="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-darkbg to-transparent z-10 pointer-events-none"></div>
+                    <div class="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-darkbg to-transparent z-10 pointer-events-none"></div>
+
+                    <!-- Animated Flex Container -->
+                    <div class="flex w-max animate-infinite-scroll group-hover:[animation-play-state:paused] opacity-60 hover:opacity-100 transition-opacity duration-500">
+                        <!-- First Set -->
+                        <div class="flex items-center gap-12 md:gap-24 pr-12 md:pr-24">
+                            <div class="text-lg sm:text-xl font-bold tracking-wider text-slate-400 hover:text-cybergreen transition-colors cursor-default whitespace-nowrap">PT Kaltim Prima Coal (KPC)</div>
+                            <div class="text-lg sm:text-xl font-bold tracking-wider text-slate-400 hover:text-cybergreen transition-colors cursor-default whitespace-nowrap">PT Pamapersada Nusantara (PAMA)</div>
+                            <div class="text-lg sm:text-xl font-bold tracking-wider text-slate-400 hover:text-cybergreen transition-colors cursor-default whitespace-nowrap">PT Bukit Makmur Mandiri Utama (BUMA)</div>
+                            <div class="text-lg sm:text-xl font-bold tracking-wider text-slate-400 hover:text-cybergreen transition-colors cursor-default whitespace-nowrap">Agincourt Resources</div>
+                            <div class="text-lg sm:text-xl font-bold tracking-wider text-slate-400 hover:text-cybergreen transition-colors cursor-default whitespace-nowrap">Kayan Putra Utama Coal</div>
+                        </div>
+                        <!-- Second Set -->
+                        <div class="flex items-center gap-12 md:gap-24 pr-12 md:pr-24">
+                            <div class="text-lg sm:text-xl font-bold tracking-wider text-slate-400 hover:text-cybergreen transition-colors cursor-default whitespace-nowrap">PT Kaltim Prima Coal (KPC)</div>
+                            <div class="text-lg sm:text-xl font-bold tracking-wider text-slate-400 hover:text-cybergreen transition-colors cursor-default whitespace-nowrap">PT Pamapersada Nusantara (PAMA)</div>
+                            <div class="text-lg sm:text-xl font-bold tracking-wider text-slate-400 hover:text-cybergreen transition-colors cursor-default whitespace-nowrap">PT Bukit Makmur Mandiri Utama (BUMA)</div>
+                            <div class="text-lg sm:text-xl font-bold tracking-wider text-slate-400 hover:text-cybergreen transition-colors cursor-default whitespace-nowrap">Agincourt Resources</div>
+                            <div class="text-lg sm:text-xl font-bold tracking-wider text-slate-400 hover:text-cybergreen transition-colors cursor-default whitespace-nowrap">Kayan Putra Utama Coal</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SYSTEM WORKFLOW (HOW IT WORKS) -->
+            <section class="py-20 md:py-28 relative border-b border-white/5 bg-darkbg/40">
+                <div class="absolute top-1/2 left-0 w-[250px] h-[250px] bg-cybergreen/5 rounded-full blur-[100px] pointer-events-none"></div>
+                
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <span class="text-xs font-bold text-cybergreen tracking-widest uppercase bg-cybergreen/10 px-3 py-1 rounded-full">Alur Sistem Terintegrasi</span>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-4">Bagaimana Telemetri Melindungi Site Anda?</h2>
+                        <p class="text-slate-400 mt-4 text-sm sm:text-base">Mulai dari pendeteksian di ujung tebing terdalam hingga pemberitahuan darurat ke smartphone manajemen dalam kurun waktu kurang dari 3 detik.</p>
+                    </div>
+
+                    <!-- Interactive Workflow Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <!-- Workflow Steps Trigger (Left Side) -->
+                        <div class="lg:col-span-5 space-y-4">
+                            <!-- Step Button 1 -->
+                            <button onclick="activateWorkflowStep(1)" id="workflow-btn-1" class="w-full text-left p-5 rounded-2xl border border-cybergreen/30 bg-white/5 hover:bg-white/10 transition-all duration-300 group flex items-start gap-4">
+                                <span class="w-10 h-10 rounded-xl bg-cybergreen text-darkbg flex items-center justify-center font-extrabold text-lg shrink-0 group-hover:scale-105 transition-transform">01</span>
+                                <div>
+                                    <h4 class="text-white font-bold text-base transition-colors group-hover:text-cybergreen">Akuisisi Data di Lapangan</h4>
+                                    <p class="text-xs text-slate-400 mt-1">Sensor Extensometer, Geotech, dan SPARING mengukur parameter fisik per-milidetik.</p>
+                                </div>
+                            </button>
+
+                            <!-- Step Button 2 -->
+                            <button onclick="activateWorkflowStep(2)" id="workflow-btn-2" class="w-full text-left p-5 rounded-2xl border border-white/5 bg-transparent hover:bg-white/5 transition-all duration-300 group flex items-start gap-4">
+                                <span class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center font-extrabold text-lg shrink-0 group-hover:scale-105 transition-transform">02</span>
+                                <div>
+                                    <h4 class="text-slate-300 font-bold text-base transition-colors group-hover:text-white">Transmisi Radio Nirkabel Jarak Jauh</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Mengirimkan paket data terenkripsi melalui teknologi LoRaWAN sejauh hingga 4 kilometer.</p>
+                                </div>
+                            </button>
+
+                            <!-- Step Button 3 -->
+                            <button onclick="activateWorkflowStep(3)" id="workflow-btn-3" class="w-full text-left p-5 rounded-2xl border border-white/5 bg-transparent hover:bg-white/5 transition-all duration-300 group flex items-start gap-4">
+                                <span class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center font-extrabold text-lg shrink-0 group-hover:scale-105 transition-transform">03</span>
+                                <div>
+                                    <h4 class="text-slate-300 font-bold text-base transition-colors group-hover:text-white">Analisis AI di AMAN Cloud</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Algoritma cerdas memproses tren data untuk memprediksi potensi pergeseran tanah.</p>
+                                </div>
+                            </button>
+
+                            <!-- Step Button 4 -->
+                            <button onclick="activateWorkflowStep(4)" id="workflow-btn-4" class="w-full text-left p-5 rounded-2xl border border-white/5 bg-transparent hover:bg-white/5 transition-all duration-300 group flex items-start gap-4">
+                                <span class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center font-extrabold text-lg shrink-0 group-hover:scale-105 transition-transform">04</span>
+                                <div>
+                                    <h4 class="text-slate-300 font-bold text-base transition-colors group-hover:text-white">Aktivasi Sirine & Alert Multi-Channel</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Jika melewati batas kritis, klakson lapangan berbunyi & tim dikabari lewat WhatsApp.</p>
+                                </div>
+                            </button>
+                        </div>
+
+                        <!-- Workflow Visual Display (Right Side) -->
+                        <div class="lg:col-span-7 p-6 sm:p-8 glass-card rounded-3xl min-h-[380px] flex flex-col justify-between relative overflow-hidden border-cybergreen/10">
+                            <div class="absolute -right-24 -top-24 w-60 h-60 bg-cybergreen/5 rounded-full blur-[80px] pointer-events-none"></div>
+                            
+                            <!-- Header Visual -->
+                            <div class="flex items-center justify-between pb-4 border-b border-white/5">
+                                <span id="workflow-badge" class="text-xs font-mono font-bold text-cybergreen uppercase tracking-widest">PROSES FASE 01: SENSOR FIELD</span>
+                                <span class="text-xs text-slate-500 font-mono select-none">Live Schema v2.6</span>
+                            </div>
+
+                            <!-- Mid Visual Content -->
+                            <div class="py-8 flex flex-col sm:flex-row items-center gap-8">
+                                <div id="workflow-graphic" class="w-32 h-32 rounded-2xl bg-cybergreen/10 border border-cybergreen/20 flex items-center justify-center text-cybergreen text-5xl shadow-neon-glow shrink-0">
+                                    📡
+                                </div>
+                                <div>
+                                    <h3 id="workflow-display-title" class="text-xl sm:text-2xl font-extrabold text-white">Sensor Cerdas Berspesifikasi Tinggi</h3>
+                                    <p id="workflow-display-desc" class="text-slate-400 text-sm mt-3 leading-relaxed">
+                                        Setiap titik lereng tambang dipasang unit micro-extensometer digital yang memonitor gesekan sub-milimeter secara konstan. Dilengkapi baterai berpelindung cuaca tangguh IP68.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Technical Specification Footer -->
+                            <div class="pt-6 border-t border-white/5 grid grid-cols-2 gap-4 text-xs">
+                                <div>
+                                    <span class="text-slate-500 block">Parameter Utama</span>
+                                    <span id="workflow-spec-1" class="text-white font-mono font-semibold mt-0.5 block">X-Y-Z Axis Displacement</span>
+                                </div>
+                                <div>
+                                    <span class="text-slate-500 block">Waktu Respons</span>
+                                    <span id="workflow-spec-2" class="text-cybergreen font-mono font-semibold mt-0.5 block">≤ 0.05 Detik</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TRUST COMPLIANCE & STANDARDS -->
+            <section class="py-20 md:py-28 relative bg-[radial-gradient(ellipse_at_bottom,rgba(0,255,102,0.01),transparent_50%)]">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                        <div>
+                            <span class="text-xs font-bold text-cybergreen tracking-widest uppercase">Kepatuhan Regulasi Nasional</span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4">Kredibilitas Hukum & Standar Keandalan Industri</h2>
+                            <p class="text-slate-400 mt-4 text-sm sm:text-base leading-relaxed">
+                                Kami memahami bahwa proyek industri berat menuntut kelayakan hukum dan keandalan operasional yang ketat. Seluruh ekosistem perangkat telemetri CV AMAN dikembangkan dengan kepatuhan hukum penuh di Indonesia.
+                            </p>
+                        </div>
+                        
+                        <!-- Quick stats badges -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-6 glass-card rounded-2xl border-white/5 hover:border-cybergreen/10 transition-colors">
+                                <span class="text-3xl block mb-2">🇮🇩</span>
+                                <h4 class="text-white font-extrabold text-sm uppercase tracking-wide">TKDN Bersertifikat</h4>
+                                <p class="text-xs text-slate-400 mt-1">Lini produk perakitan lokal dengan persentase TKDN di atas 40%.</p>
+                            </div>
+                            <div class="p-6 glass-card rounded-2xl border-white/5 hover:border-cybergreen/10 transition-colors">
+                                <span class="text-3xl block mb-2">⚖️</span>
+                                <h4 class="text-white font-extrabold text-sm uppercase tracking-wide">Kalibrasi KAN</h4>
+                                <p class="text-xs text-slate-400 mt-1">Sensor telah lolos kalibrasi laboratorium yang diakreditasi resmi oleh KAN.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certification cards row -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Cert card 1 -->
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
+                            <h4 class="text-white font-extrabold text-base flex items-center justify-between">
+                                <span>KLHK Server Integration</span>
+                                <span class="text-xs px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full font-mono font-bold">100% OK</span>
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                                Sistem Geovos SPARING kami memiliki skrip integrasi aman yang telah lolos pengujian sinkronisasi API dari server pusat Kementerian Lingkungan Hidup dan Kehutanan RI.
+                            </p>
+                        </div>
+
+                        <!-- Cert card 2 -->
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
+                            <h4 class="text-white font-extrabold text-base flex items-center justify-between">
+                                <span>Sertifikasi SDPPI</span>
+                                <span class="text-xs px-2.5 py-1 bg-cybergreen/15 text-cybergreen rounded-full font-mono font-bold">TERDAFTAR</span>
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                                Seluruh pemancar frekuensi radio nirkabel LoraWAN kami mematuhi alokasi lebar pita frekuensi resmi SDPPI Kominfo demi menghindari gangguan frekuensi radio darurat.
+                            </p>
+                        </div>
+
+                        <!-- Cert card 3 -->
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
+                            <h4 class="text-white font-extrabold text-base flex items-center justify-between">
+                                <span>Sistem Mutu ISO 9001</span>
+                                <span class="text-xs px-2.5 py-1 bg-white/10 text-white rounded-full font-mono font-bold">ISO 9001:2015</span>
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                                Standar manajemen mutu perakitan fisik hardware, penulisan sistem cloud, hingga pelayanan teknisi purna jual yang profesional dan konsisten.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- CALL TO ACTION FOR OTHER PAGES -->
+            <section class="py-20 bg-gradient-to-b from-darkbg to-black/30 border-b border-white/5">
+                <div class="max-w-4xl mx-auto text-center px-4">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-4">Sistem Terintegrasi Skala Industri Terpercaya</h2>
+                    <p class="text-slate-400 mb-8 max-w-2xl mx-auto">Kami menyediakan solusi telemetri bersertifikasi yang siap dikoneksikan ke server pusat data perusahaan Anda serta lembaga pemerintahan terkait secara langsung.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <a href="#/solusi" class="p-6 glass-card rounded-2xl block text-left">
+                            <h3 class="font-bold text-white mb-2 text-lg flex items-center justify-between">
+                                <span>Solusi IoT</span>
+                                <span class="text-cybergreen">&rarr;</span>
+                            </h3>
+                            <p class="text-xs text-slate-400">Analisis variasi perangkat keras & kecerdasan buatan terapan di lapangan.</p>
+                        </a>
+                        <a href="#/demo" class="p-6 glass-card rounded-2xl block text-left">
+                            <h3 class="font-bold text-white mb-2 text-lg flex items-center justify-between">
+                                <span>Simulasi Live</span>
+                                <span class="text-cybergreen">&rarr;</span>
+                            </h3>
+                            <p class="text-xs text-slate-400">Mainkan simulasi data parameter sensor dan kendali peringatan dini.</p>
+                        </a>
+                        <a href="#/keunggulan" class="p-6 glass-card rounded-2xl block text-left">
+                            <h3 class="font-bold text-white mb-2 text-lg flex items-center justify-between">
+                                <span>Standar SLA</span>
+                                <span class="text-cybergreen">&rarr;</span>
+                            </h3>
+                            <p class="text-xs text-slate-400">Jaminan operasional nirkabel jarak jauh berspesifikasi tangguh IP68.</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HOMEPAGE FAQ SECTION -->
+            <section class="py-20 relative bg-darkbg/60 border-b border-white/5">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <span class="text-xs font-bold text-cybergreen tracking-widest uppercase bg-cybergreen/10 px-3 py-1 rounded-full">Tanya & Jawab</span>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-4">Pertanyaan yang Sering Diajukan</h2>
+                        <p class="text-slate-400 mt-4 text-sm sm:text-base">Temukan jawaban cepat atas pertanyaan umum mengenai solusi telemetri, integrasi sensor, dan sistem peringatan dini kami.</p>
+                    </div>
+
+                    <!-- 2-Column Responsive FAQ Accordion Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+                        
+                        <!-- Left Column (FAQ 1 - 9) -->
+                        <div class="space-y-4">
+                            <!-- FAQ Item 1 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(1)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Apakah bisa monitoring beberapa titik lokasi sekaligus?</span>
+                                    <span id="home-faq-icon-1" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-1" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Bisa. Umumnya dashboard dibuat multi-site supaya tim bisa memantau banyak lokasi, mengatur threshold per lokasi, dan melihat tren historis.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 2 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(2)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Apakah ada fitur notifikasi peringatan?</span>
+                                    <span id="home-faq-icon-2" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-2" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Ada. Notifikasi bisa diatur berdasarkan ambang batas (threshold), tren (mis. kenaikan cepat), atau kondisi tertentu supaya tim dapat early warning dan bisa ambil tindakan lebih cepat.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 3 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(3)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Data apa saja yang bisa dimonitor?</span>
+                                    <span id="home-faq-icon-3" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-3" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Tergantung sensor yang dipakai. Prinsipnya, selama parameternya bisa diukur sensor (analog/digital) dan dibaca perangkat akuisisi data, sistem bisa dikonfigurasikan untuk menampilkannya di dashboard dan laporan.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 4 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(4)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Apakah sistem bisa diintegrasikan dengan sistem existing perusahaan?</span>
+                                    <span id="home-faq-icon-4" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-4" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Umumnya bisa. Integrasi bisa berupa akses data untuk kebutuhan internal (mis. pelaporan, analitik, atau sistem operasional). Format dan metode integrasi menyesuaikan kebutuhan (mis. API/ekspor data).
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 5 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(5)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Bagaimana kalau lokasi susah sinyal?</span>
+                                    <span id="home-faq-icon-5" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-5" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Biasanya ada opsi desain konektivitas sesuai kondisi lapangan. Kalau koneksi tidak stabil, sistem bisa dirancang agar data tetap tersimpan dulu dan terkirim saat jaringan tersedia (konsep store-and-forward), sesuai kebutuhan proyek.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 6 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(6)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Apakah data saya aman dan siapa yang punya data?</span>
+                                    <span id="home-faq-icon-6" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-6" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Secara umum data pelanggan tetap milik pelanggan, aksesnya diatur via role/otorisasi, dan pengiriman/penyimpanan data mengikuti kebutuhan keamanan proyek. Detail implementasi keamanan biasanya ditentukan di tahap perancangan.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 7 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(7)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Berapa lama proses implementasi dari awal sampai live?</span>
+                                    <span id="home-faq-icon-7" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-7" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Tergantung kompleksitas (jumlah titik, jenis sensor, kebutuhan integrasi, kondisi lapangan). Umumnya dimulai dari diskusi kebutuhan &rarr; survey/assessment &rarr; desain solusi &rarr; instalasi & konfigurasi &rarr; uji coba &rarr; training &rarr; go-live.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 8 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(8)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Apakah CV AMAN menyediakan training untuk tim kami?</span>
+                                    <span id="home-faq-icon-8" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-8" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Bisa. Training biasanya mencakup cara membaca dashboard, membuat/menyesuaikan alarm, interpretasi data dasar, dan prosedur eskalasi saat notifikasi muncul.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 9 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(9)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Bagaimana layanan after-sales dan maintenance-nya?</span>
+                                    <span id="home-faq-icon-9" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-9" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Umumnya tersedia opsi dukungan (support) dan maintenance sesuai kebutuhan operasional mulai dari remote support, pengecekan berkala, sampai penanganan gangguan/kalibrasi (jika diperlukan).
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column (FAQ 10 - 18) -->
+                        <div class="space-y-4">
+                            <!-- FAQ Item 10 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(10)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Apakah bisa uji coba dulu (Pilot/PoC) sebelum implementasi besar?</span>
+                                    <span id="home-faq-icon-10" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-10" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Tentu bisa. Pilot/PoC membantu memastikan sensor, konektivitas, dan dashboard sesuai ekspektasi sebelum scale ke banyak titik.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 11 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(11)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Apakah CV AMAN terkait SPARING/KLHK?</span>
+                                    <span id="home-faq-icon-11" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-11" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    CV AMAN memang menyediakan konteks implementasi terkait SPARING. Untuk kebutuhan spesifik (format, parameter, integrasi, dan alur pelaporan), biasanya disesuaikan lagi di tahap diskusi dan desain solusi.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 12 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(12)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>CV AMAN itu bergerak di bidang apa?</span>
+                                    <span id="home-faq-icon-12" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-12" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    CV AMAN fokus pada custom engineering technology, telemetry, dan solusi remote monitoring berbasis IoT untuk kebutuhan industri mulai dari akuisisi data sensor, pengiriman data, sampai dashboard dan sistem peringatan (early warning).
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 13 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(13)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Bagaimana cara mendapatkan penawaran harga?</span>
+                                    <span id="home-faq-icon-13" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-13" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Harga biasanya tergantung jumlah titik, jenis sensor/perangkat, kebutuhan konektivitas, kebutuhan dashboard/integrasi, dan level support. Jika memang ada kebutuhan secara CUSTOM kirim kebutuhan minimum (lokasi, jumlah titik, parameter, target waktu) untuk dibuatkan estimasi.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 14 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(14)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Kalau Produk CV AMAN banyak, saya harus mulai darimana?</span>
+                                    <span id="home-faq-icon-14" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-14" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Mulai dari kebutuhan dan parameter yang mau dimonitor (mis. level, tekanan, getaran, deformasi, cuaca, kualitas lingkungan, dll). Setelah itu baru dipilih kombinasi perangkat, sensor, dan sistem monitoring yang paling pas, jadi Anda tidak perlu hafal semua produk.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 15 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(15)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Kalau saya mau demo, bagaimana langkahnya?</span>
+                                    <span id="home-faq-icon-15" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-15" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Tinggal hubungi tim melalui halaman Contact, jelaskan industri dan kebutuhan monitoring kamu, lalu tim bisa jadwalkan demo/assessment.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 16 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(16)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Industri apa saja yang cocok menggunakan solusi dari CV AMAN?</span>
+                                    <span id="home-faq-icon-16" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-16" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Umumnya cocok untuk sektor mining, pertanian, dan berbagai aplikasi industri lain yang butuh monitoring jarak jauh, pencatatan data berkelanjutan, dan alarm/peringatan otomatis.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 17 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(17)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Solusi yang ditawarkan dalam bentuk apa saja?</span>
+                                    <span id="home-faq-icon-17" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-17" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Biasanya kombinasi: perangkat lapangan (sensor + data logger/gateway), konektivitas (sesuai lokasi), platform monitoring (dashboard), notifikasi/alarm, serta layanan implementasi dan dukungan (support).
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 18 -->
+                            <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                <button onclick="toggleHomeFaq(18)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                    <span>Sistem monitoring-nya realtime atau berkala?</span>
+                                    <span id="home-faq-icon-18" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                </button>
+                                <div id="home-faq-content-18" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                    Bisa keduanya. Untuk kebutuhan operasional dan keselamatan biasanya dibuat realtime/near realtime, sementara untuk pelaporan bisa diatur intervalnya sesuai kebutuhan.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- VIEW 2: SOLUTIONS PAGE -->
+        <div id="view-solusi" class="view-pane">
+            <section class="py-12 md:py-20 relative">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-xs font-bold text-cybergreen tracking-widest uppercase mb-2">Our Solutions Ecosystem</h2>
+                        <h1 class="text-3xl sm:text-5xl font-extrabold text-white">Sistem IoT & Telemetri Terintegrasi</h1>
+                        <p class="text-slate-400 mt-4 text-sm sm:text-base">Membangun keandalan pertambangan, mitigasi bencana, hingga pengawasan lingkungan cerdas lewat integrasi hardware & software canggih.</p>
+                    </div>
+
+                    <!-- BENTO GRID DETAILED LAYOUT -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                        <!-- Geovos Extensometer Detailed Card -->
+                        <div class="lg:col-span-2 glass-card rounded-3xl p-8 relative overflow-hidden flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="p-4 bg-cybergreen/10 text-cybergreen rounded-2xl">
+                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                                        </svg>
+                                    </div>
+                                    <span class="px-4 py-1.5 bg-cybergreen/20 text-cybergreen rounded-full text-xs font-bold uppercase tracking-widest">EWS Pertambangan Utama</span>
+                                </div>
+                                <h3 class="text-3xl font-bold text-white mb-4">Geovos Extensometer (Kestabilan Lereng)</h3>
+                                <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-6">
+                                    Merupakan sistem sensor monitoring kestabilan lereng tambang & pergerakan tanah otomatis dengan akurasi kelas milimeter. Dirancang untuk mitigasi bencana tanah longsor pada area tambang terbuka (*open pit*), lereng jalan tol, hingga bendungan penampungan air/limbah (*tailing dam*).
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                                    <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                                        <h4 class="text-white font-bold text-sm mb-1">Akurasi & Sensitivitas Tinggi</h4>
+                                        <p class="text-xs text-slate-400">Mampu mendeteksi pergeseran tanah sekecil &lt; 1 milimeter secara konsisten.</p>
+                                    </div>
+                                    <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                                        <h4 class="text-white font-bold text-sm mb-1">Catu Daya Mandiri (Solar Panel)</h4>
+                                        <p class="text-xs text-slate-400">Bekerja nonstop 24/7 menggunakan solar panel industri terintegrasi baterai tangguh.</p>
+                                    </div>
+                                    <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                                        <h4 class="text-white font-bold text-sm mb-1">Sirine Lapangan Cerdas</h4>
+                                        <p class="text-xs text-slate-400">Membunyikan klakson & lampu suar di lokasi kerja seketika jika pergeseran melewati batas kritis.</p>
+                                    </div>
+                                    <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                                        <h4 class="text-white font-bold text-sm mb-1">Konektivitas Nirkabel LoraWAN</h4>
+                                        <p class="text-xs text-slate-400">Jangkauan transmisi data hingga 4.000m tanpa bergantung jaringan internet seluler biasa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-6 border-t border-white/5 flex flex-wrap items-center justify-between gap-4">
+                                <span class="text-xs text-slate-500 font-mono">STANDAR MUTU: ISO 9001, CE CERTIFIED</span>
+                                <a href="#/kontak" class="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-bold text-sm border border-white/10 transition-all">Minta Penawaran Spesifikasi</a>
+                            </div>
+                        </div>
+
+                        <!-- Geovos SPARING Detailed Card -->
+                        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="p-4 bg-emerald-500/10 text-emerald-400 rounded-2xl">
+                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="px-4 py-1.5 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-bold uppercase tracking-widest">Kepatuhan KLHK</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-4">Geovos SPARING</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                    Sistem Pemantauan Kualitas Air Limbah Industri Secara Terus Menerus dan Dalam Jaringan. Menjamin operasional pemantauan pembuangan air limbah tetap mematuhi regulasi ketat Kementerian Lingkungan Hidup dan Kehutanan (KLHK) Republik Indonesia.
+                                </p>
+                                <div class="space-y-4 mb-8">
+                                    <div class="p-3 bg-white/5 rounded-xl flex items-center gap-3">
+                                        <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+                                        <span class="text-xs text-slate-300">Parameter: pH, COD, TSS, Debit, & Suhu air.</span>
+                                    </div>
+                                    <div class="p-3 bg-white/5 rounded-xl flex items-center gap-3">
+                                        <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+                                        <span class="text-xs text-slate-300">Sertifikat Uji Konektivitas KLHK Resmi 100% Lolos.</span>
+                                    </div>
+                                    <div class="p-3 bg-white/5 rounded-xl flex items-center gap-3">
+                                        <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+                                        <span class="text-xs text-slate-300">Pemberitahuan otomatis jika kadar limbah melebihi baku mutu.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-6 border-t border-white/5">
+                                <a href="#/kontak" class="w-full block text-center px-4 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-cybergreen text-darkbg font-bold text-sm hover:scale-[1.02] transition-all duration-300">
+                                    Konsultasi Regulasi SPARING
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Specifications Table -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 overflow-hidden">
+                        <h3 class="text-xl font-bold text-white mb-6">Komparasi Teknis Perangkat Telemetri</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-sm text-slate-300">
+                                <thead>
+                                    <tr class="border-b border-white/10 text-slate-400 text-xs uppercase font-bold tracking-wider">
+                                        <th class="py-4 px-4">Fitur Utama</th>
+                                        <th class="py-4 px-4">Geovos Extensometer</th>
+                                        <th class="py-4 px-4">Geovos SPARING</th>
+                                        <th class="py-4 px-4">Industrial Automation PLC</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5">
+                                    <tr>
+                                        <td class="py-4 px-4 font-semibold text-white">Target Deteksi Utama</td>
+                                        <td class="py-4 px-4">Pergeseran tanah / lereng tambang</td>
+                                        <td class="py-4 px-4">Debit & Parameter Kimia Limbah Air</td>
+                                        <td class="py-4 px-4">Vibrasi, Temperatur, Arus Motor</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 px-4 font-semibold text-white">Metode Koneksi Data</td>
+                                        <td class="py-4 px-4">LoraWAN / 4G LTE / Satelit</td>
+                                        <td class="py-4 px-4">4G LTE / RJ45 Ethernet</td>
+                                        <td class="py-4 px-4">RS485 Modbus / OPC-UA / MQTT</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 px-4 font-semibold text-white">Sertifikasi Industri</td>
+                                        <td class="py-4 px-4">Sertifikat Kalibrasi, TKDN (40%+)</td>
+                                        <td class="py-4 px-4">Sertifikat Uji Koneksi KLHK RI</td>
+                                        <td class="py-4 px-4">Standar Industri SCADA Terbuka</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 px-4 font-semibold text-white">Ketahanan casing fisik</td>
+                                        <td class="py-4 px-4 text-cybergreen">IP68 (Tahan badai & tenggelam)</td>
+                                        <td class="py-4 px-4">IP67 (Kedap cuaca luar ruangan)</td>
+                                        <td class="py-4 px-4">IP65 (Instalasi box panel kontrol)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- VIEW 3: LIVE DEMO INTERACTIVE DASHBOARD -->
+        <div id="view-demo" class="view-pane">
+            <section class="py-12 md:py-20 relative">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <h2 class="text-xs font-bold text-cybergreen tracking-widest uppercase mb-2">Simulation Playground</h2>
+                        <h1 class="text-3xl sm:text-4xl font-extrabold text-white">Live Dashboard Simulator ews.sensorwarning.id</h1>
+                        <p class="text-slate-400 mt-4 text-sm">Cobalah menggeser pengatur parameter untuk menguji fungsi EWS (Early Warning System) instan kami secara langsung.</p>
+                    </div>
+
+                    <!-- Interactive Play Dashboard Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto">
+                        <!-- Left Panel: Live Control Center -->
+                        <div class="lg:col-span-4 glass-card rounded-3xl p-6 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 bg-cybergreen rounded-full animate-ping"></span>
+                                    Konsol Pengendali Sensor
+                                </h3>
+                                <p class="text-xs text-slate-400 mb-6 leading-relaxed">Geser slider di bawah ini untuk merubah nilai data telemetri yang dikirimkan ke satelit secara artifisial.</p>
+                                
+                                <!-- Slider 1: Movement Extensometer -->
+                                <div class="mb-6">
+                                    <div class="flex items-center justify-between text-xs font-bold mb-2">
+                                        <span class="text-slate-300">PERGESERAN TANAH</span>
+                                        <span id="slider-val-ext" class="text-cybergreen">0.24 mm</span>
+                                    </div>
+                                    <input id="slider-ext" type="range" min="0" max="15" step="0.1" value="0.2" class="w-full accent-cybergreen cursor-pointer bg-white/10 h-1.5 rounded-lg">
+                                    <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1">
+                                        <span>0 mm (Aman)</span>
+                                        <span>15 mm (Bahaya)</span>
+                                    </div>
+                                </div>
+
+                                <!-- Slider 2: pH Sensor -->
+                                <div class="mb-6">
+                                    <div class="flex items-center justify-between text-xs font-bold mb-2">
+                                        <span class="text-slate-300">pH AIR LIMBAH</span>
+                                        <span id="slider-val-ph" class="text-cybergreen">7.10 pH</span>
+                                    </div>
+                                    <input id="slider-ph" type="range" min="1" max="14" step="0.1" value="7.1" class="w-full accent-cybergreen cursor-pointer bg-white/10 h-1.5 rounded-lg">
+                                    <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1">
+                                        <span>Asam ekstrem (1)</span>
+                                        <span>Basa ekstrem (14)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 bg-white/5 rounded-2xl border border-white/5 text-xs text-slate-400 leading-relaxed">
+                                <span class="font-bold text-white block mb-1">💡 Catatan Simulasi:</span>
+                                Atur parameter pergeseran di atas **5.0 mm** atau tingkat keasaman di luar rentang **6.0 - 9.0 pH** untuk menguji mekanisme aktivasi peringatan darurat.
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Mockup Dashboard Monitor screen -->
+                        <div class="lg:col-span-8 glass-card rounded-3xl p-4 sm:p-6 shadow-2xl relative border border-white/10 flex flex-col justify-between">
+                            
+                            <!-- EWS Warning Banner (Hidden by default, triggered dynamically) -->
+                            <div id="ews-alert-banner" class="hidden mb-4 p-4 rounded-xl border flex items-center justify-between animate-pulse">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-2xl" id="ews-alert-emoji">⚠️</span>
+                                    <div>
+                                        <h4 class="font-extrabold text-sm" id="ews-alert-title">STATUS: PERINGATAN DARURAT</h4>
+                                        <p class="text-xs" id="ews-alert-desc">Sistem mendeteksi nilai parameter di luar ambang batas aman!</p>
+                                    </div>
+                                </div>
+                                <button onclick="dismissEwsAlert()" class="text-xs bg-black/20 hover:bg-black/40 px-3 py-1.5 rounded-lg font-bold">Abaikan</button>
+                            </div>
+
+                            <!-- Screen Header -->
+                            <div class="flex items-center justify-between pb-4 border-b border-white/5 mb-6 text-xs text-slate-500">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                                    <span class="ml-2 font-mono tracking-tight select-none text-[10px] sm:text-xs">ews.sensorwarning.id/live/site-alpha</span>
+                                </div>
+                                <span class="bg-cybergreen/10 text-cybergreen px-2 py-0.5 rounded font-mono font-bold text-[9px] sm:text-xs tracking-wider">● LIVE STREAMING</span>
+                            </div>
+
+                            <!-- Dashboard Cards Showcase -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                                <div id="card-ext" class="bg-white/5 p-4 rounded-xl border border-white/5 transition-colors duration-300">
+                                    <div class="text-[10px] sm:text-xs text-slate-400 font-medium">Data Pergerakan Tanah</div>
+                                    <div class="text-lg sm:text-2xl font-bold mt-1 text-white"><span id="dash-val-ext">0.24</span> <span class="text-xs text-slate-400 font-normal">mm</span></div>
+                                    <span id="dash-status-ext" class="text-[9px] font-bold text-emerald-400">✔ Status Normal</span>
+                                </div>
+                                <div id="card-ph" class="bg-white/5 p-4 rounded-xl border border-white/5 transition-colors duration-300">
+                                    <div class="text-[10px] sm:text-xs text-slate-400 font-medium">Baku Mutu Air Limbah</div>
+                                    <div class="text-lg sm:text-2xl font-bold mt-1 text-white"><span id="dash-val-ph">7.10</span> <span class="text-xs text-slate-400 font-normal">pH</span></div>
+                                    <span id="dash-status-ph" class="text-[9px] font-bold text-emerald-400">✔ Sesuai Ambang KLHK</span>
+                                </div>
+                                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                                    <div class="text-[10px] sm:text-xs text-slate-400 font-medium">Sistem Catu Daya Batere</div>
+                                    <div class="text-lg sm:text-2xl font-bold text-white mt-1">12.8 <span class="text-xs text-slate-400 font-normal">V</span></div>
+                                    <span class="text-[9px] text-cybergreen font-semibold">🔋 Solar Charging (ON)</span>
+                                </div>
+                            </div>
+
+                            <!-- SVG Simulated Graph -->
+                            <div class="bg-white/5 p-4 rounded-xl border border-white/5 flex flex-col justify-between h-48">
+                                <div class="flex items-center justify-between text-xs mb-4">
+                                    <span class="text-slate-400 font-semibold">Grafik Tren Sensor Real-Time (24 Jam)</span>
+                                    <span class="text-[9px] bg-white/10 text-slate-300 px-2 py-0.5 rounded font-mono">Sampling: 5 mnt</span>
+                                </div>
+                                <div class="w-full h-28 relative mt-auto flex items-end">
+                                    <!-- Animated Grid Lines -->
+                                    <div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20">
+                                        <div class="border-b border-white w-full"></div>
+                                        <div class="border-b border-white w-full"></div>
+                                        <div class="border-b border-white w-full"></div>
+                                    </div>
+                                    <!-- Graph Line -->
+                                    <svg class="w-full h-full" viewBox="0 0 500 100" preserveAspectRatio="none">
+                                        <path id="graph-path" d="M0,80 Q30,75 60,82 T120,70 T180,50 T240,53 T300,40 T360,42 T420,38 T480,25 T500,28" fill="none" stroke="#00FF66" stroke-width="2.5" class="drop-shadow-[0_0_8px_rgba(0,255,102,0.5)] transition-all duration-300"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- VIEW 4: KEUNGGULAN (CORE ADVANTAGES) -->
+        <div id="view-keunggulan" class="view-pane">
+            <section class="py-12 md:py-20 relative">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center mb-16">
+                        <div>
+                            <h2 class="text-xs font-bold text-cybergreen tracking-widest uppercase mb-2">Core Advantage Matrix</h2>
+                            <h1 class="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">Kenapa Perusahaan Besar Memilih CV AMAN?</h1>
+                            <p class="text-slate-400 mt-4 text-sm sm:text-base leading-relaxed">
+                                Kami bukan hanya sekedar perakit atau penjual produk sensor biasa, melainkan menghadirkan standar garansi keandalan operasional, ketenangan pikiran (*SLA Protection*) untuk kelancaran bisnis jangka panjang Anda.
+                            </p>
+                            <div class="mt-8">
+                                <a href="#/kontak" class="text-sm font-bold text-cybergreen border-b border-cybergreen pb-1 hover:text-emerald-300 hover:border-emerald-300 transition-all">Hubungi Tim Layanan Dukungan Teknis kami &rarr;</a>
+                            </div>
+                        </div>
+
+                        <!-- 2-Column Advantage Feature Cards -->
+                        <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Feature card 1 -->
+                            <div class="p-6 bg-white/5 rounded-2xl border border-white/5 hover:border-cybergreen/20 transition-all">
+                                <div class="text-cybergreen mb-4">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-bold text-white mb-2">Notifikasi Instan Multi-Channel</h4>
+                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">Sistem andalan kami mengirimkan pesan notifikasi bahaya secara detik itu juga ke grup WhatsApp internal operasi tambang, SMS blast, hingga mengaktifkan sirine suar fisik di lapangan.</p>
+                            </div>
+
+                            <!-- Feature card 2 -->
+                            <div class="p-6 bg-white/5 rounded-2xl border border-white/5 hover:border-cybergreen/20 transition-all">
+                                <div class="text-cybergreen mb-4">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-bold text-white mb-2">Akurasi Transmisi Nirkabel LoraWAN</h4>
+                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">Menggunakan perpaduan frekuensi radio nirkabel LoraWAN jarak jauh berdaya rendah, menjamin pengiriman paket data sensor mulus di area pelosok tanpa jaringan internet seluler biasa.</p>
+                            </div>
+
+                            <!-- Feature card 3 -->
+                            <div class="p-6 bg-white/5 rounded-2xl border border-white/5 hover:border-cybergreen/20 transition-all">
+                                <div class="text-cybergreen mb-4">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-bold text-white mb-2">Ketahanan Lapangan IP67 / IP68</h4>
+                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">Casing pelindung aluminium standar militer yang kedap cuaca panas ekstrem, terpaan badai hujan tropis lebat, hingga tahan korosi kimia air limbah tambang.</p>
+                            </div>
+
+                            <!-- Feature card 4 -->
+                            <div class="p-6 bg-white/5 rounded-2xl border border-white/5 hover:border-cybergreen/20 transition-all">
+                                <div class="text-cybergreen mb-4">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-bold text-white mb-2">Skalabilitas Cloud Multi-Site</h4>
+                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">Arsitektur server cloud CV AMAN yang tangguh siap memantau dan mengagregasikan ribuan node sensor dari berbagai cabang lokasi daerah operasional korporasi Anda tanpa jeda waktu.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLA Process Diagram / Steps -->
+                    <div class="glass-card rounded-3xl p-8 max-w-5xl mx-auto">
+                        <h3 class="text-2xl font-bold text-white mb-8 text-center">Alur Respons Kedaruratan & SLA Dukungan Teknis</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+                            <!-- Step 1 -->
+                            <div class="p-4 bg-white/5 rounded-xl border border-white/5 relative z-10">
+                                <div class="w-8 h-8 rounded-full bg-cybergreen text-darkbg flex items-center justify-center font-extrabold text-sm mb-3">01</div>
+                                <h4 class="font-bold text-white text-sm mb-2">Anomali Terdeteksi</h4>
+                                <p class="text-xs text-slate-400">Sensor mendeteksi getaran, penurunan lereng tambang, atau limbah berbahaya dalam hitungan mikrodetik.</p>
+                            </div>
+                            <!-- Step 2 -->
+                            <div class="p-4 bg-white/5 rounded-xl border border-white/5 relative z-10">
+                                <div class="w-8 h-8 rounded-full bg-cybergreen text-darkbg flex items-center justify-center font-extrabold text-sm mb-3">02</div>
+                                <h4 class="font-bold text-white text-sm mb-2">Alert Kedaruratan Aktif</h4>
+                                <p class="text-xs text-slate-400">Sirine menyala nyaring di site tambang & pesan siaga dikirim ke WhatsApp Group tim operasional kurang dari 2 detik.</p>
+                            </div>
+                            <!-- Step 3 -->
+                            <div class="p-4 bg-white/5 rounded-xl border border-white/5 relative z-10">
+                                <div class="w-8 h-8 rounded-full bg-cybergreen text-darkbg flex items-center justify-center font-extrabold text-sm mb-3">03</div>
+                                <h4 class="font-bold text-white text-sm mb-2">Mitigasi Pengamanan</h4>
+                                <p class="text-xs text-slate-400">Tim lapangan melakukan evakuasi dini berdasarkan lokasi sensor presisi yang tertera di peta krisis.</p>
+                            </div>
+                            <!-- Step 4 -->
+                            <div class="p-4 bg-white/5 rounded-xl border border-white/5 relative z-10">
+                                <div class="w-8 h-8 rounded-full bg-cybergreen text-darkbg flex items-center justify-center font-extrabold text-sm mb-3">04</div>
+                                <h4 class="font-bold text-white text-sm mb-2">Audit & Penormalan</h4>
+                                <p class="text-xs text-slate-400">Tim teknisi senior CV AMAN memberikan dukungan perbaikan perangkat jika ada kendala pasca-bencana.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- VIEW 5: HUBUNGI KAMI & FAQ PAGE -->
+        <div id="view-kontak" class="view-pane">
+            <section class="py-12 md:py-20 relative bg-[radial-gradient(ellipse_at_bottom,rgba(0,255,102,0.02),transparent_60%)]">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-20">
+                        <!-- Contact Left Panel -->
+                        <div>
+                            <h2 class="text-xs font-bold text-cybergreen tracking-widest uppercase mb-2">Get in Touch</h2>
+                            <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-6">Mulai Lindungi Operasional Industri Anda Sekarang</h1>
+                            <p class="text-slate-400 mb-8 text-sm sm:text-base leading-relaxed">
+                                Diskusikan spesifikasi teknis kebutuhan sensor kustom atau integrasi SCADA korporat Anda bersama staf teknisi senior andalan kami. Kami akan merespon dengan surat penawaran harga resmi dalam kurun waktu kurang dari 1x24 jam kerja.
+                            </p>
+
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4">
+                                    <div class="p-3 bg-white/5 text-cybergreen rounded-xl">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-white font-bold text-sm">Email Korespondensi</h5>
+                                        <p class="text-xs text-slate-400">info@sensorwarning.id / sales@sensorwarning.id</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="p-3 bg-white/5 text-cybergreen rounded-xl">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-white font-bold text-sm">Alamat Kantor Pusat</h5>
+                                        <p class="text-xs text-slate-400">Gedung AMAN Cyber-Tech Lt. 4, Kawasan Industri Jababeka, Jawa Barat, Indonesia.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form UI Grid -->
+                        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl">
+    <!-- Ganti form lama dengan ini -->
+    <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+        
+        <!-- INI PENTING: Jangan hapus baris ini -->
+        <input type="hidden" name="access_key" value="6ff55e95-0afc-4013-9592-4fb04a965346">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Nama Lengkap</label>
+                <input type="text" name="name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-cybergreen transition-all" placeholder="Nama Anda">
+            </div>
+            <div>
+                <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Nama Perusahaan / Instansi</label>
+                <input type="text" name="company" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-cybergreen transition-all" placeholder="PT Tambang Maju">
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Alamat Email Bisnis</label>
+                <input type="email" name="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-cybergreen transition-all" placeholder="nama@perusahaan.com">
+            </div>
+            <div>
+                <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Kebutuhan Solusi</label>
+                <select name="solution" class="w-full bg-darkbg border border-white/10 rounded-xl px-4 py-2.5 text-slate-300 text-sm focus:outline-none focus:border-cybergreen transition-all">
+                    <option value="Geovos Extensometer (EWS Longsor)">Geovos Extensometer (EWS Longsor)</option>
+                    <option value="Geovos SPARING (Limbah KLHK)">Geovos SPARING (Limbah KLHK)</option>
+                    <option value="Industrial Automation & SCADA">Industrial Automation & SCADA</option>
+                    <option value="Predictive Maintenance 4.0">Predictive Maintenance 4.0</option>
+                    <option value="Lainnya">Lainnya / Kustom Konsultasi</option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Detail Pesan Kebutuhan Lapangan</label>
+            <textarea name="message" rows="3" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-cybergreen transition-all" placeholder="Tuliskan gambaran singkat lokasi proyek..."></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-cybergreen text-darkbg font-bold text-center text-sm shadow-neon-glow hover:shadow-neon-glow-hover transition-all duration-300">
+            Kirim Formulir Penawaran Resmi
+        </button>
+    </form>
+</div>
+                    </div>
+
+                    <!-- Collapsible FAQ Accordion (Updated with Homepage FAQs in 2-Column Grid) -->
+                    <div class="max-w-7xl mx-auto pt-12 border-t border-white/5">
+                        <h3 class="text-2xl font-bold text-white mb-8 text-center">Tanya & Jawab Umum (FAQ)</h3>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start text-left">
+                            
+                            <!-- Left Column (FAQ 1 - 9) -->
+                            <div class="space-y-4">
+                                <!-- FAQ Item 1 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(1)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Apakah bisa monitoring beberapa titik lokasi sekaligus?</span>
+                                        <span id="contact-faq-icon-1" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-1" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Bisa. Umumnya dashboard dibuat multi-site supaya tim bisa memantau banyak lokasi, mengatur threshold per lokasi, dan melihat tren historis.
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 2 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(2)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Apakah ada fitur notifikasi peringatan?</span>
+                                        <span id="contact-faq-icon-2" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-2" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Ada. Notifikasi bisa diatur berdasarkan ambang batas (threshold), tren (mis. kenaikan cepat), atau kondisi tertentu supaya tim dapat early warning dan bisa ambil tindakan lebih cepat.
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 3 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(3)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Data apa saja yang bisa dimonitor?</span>
+                                        <span id="contact-faq-icon-3" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-3" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Tergantung sensor yang dipakai. Prinsipnya, selama parameternya bisa diukur sensor (analog/digital) dan dibaca perangkat akuisisi data, sistem bisa dikonfigurasikan untuk menampilkannya di dashboard dan laporan.
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 4 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(4)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Apakah sistem bisa diintegrasikan dengan sistem existing perusahaan?</span>
+                                        <span id="contact-faq-icon-4" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-4" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Umumnya bisa. Integrasi bisa berupa akses data untuk kebutuhan internal (mis. pelaporan, analitik, atau sistem operasional). Format dan metode integrasi menyesuaikan kebutuhan (mis. API/ekspor data).
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 5 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(5)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Bagaimana kalau lokasi susah sinyal?</span>
+                                        <span id="contact-faq-icon-5" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-5" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Biasanya ada opsi desain konektivitas sesuai kondisi lapangan. Kalau koneksi tidak stabil, sistem bisa dirancang agar data tetap tersimpan dulu dan terkirim saat jaringan tersedia (konsep store-and-forward), sesuai kebutuhan proyek.
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 6 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(6)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Apakah data saya aman dan siapa yang punya data?</span>
+                                        <span id="contact-faq-icon-6" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-6" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Secara umum data pelanggan tetap milik pelanggan, aksesnya diatur via role/otorisasi, dan pengiriman/penyimpanan data mengikuti kebutuhan keamanan proyek. Detail implementasi keamanan biasanya ditentukan di tahap perancangan.
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 7 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(7)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Berapa lama proses implementasi dari awal sampai live?</span>
+                                        <span id="contact-faq-icon-7" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-7" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Tergantung kompleksitas (jumlah titik, jenis sensor, kebutuhan integrasi, kondisi lapangan). Umumnya dimulai dari diskusi kebutuhan &rarr; survey/assessment &rarr; desain solusi &rarr; instalasi & konfigurasi &rarr; uji coba &rarr; training &rarr; go-live.
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 8 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(8)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Apakah CV AMAN menyediakan training untuk tim kami?</span>
+                                        <span id="contact-faq-icon-8" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-8" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Bisa. Training biasanya mencakup cara membaca dashboard, membuat/menyesuaikan alarm, interpretasi data dasar, dan prosedur eskalasi saat notifikasi muncul.
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 9 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(9)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Bagaimana layanan after-sales dan maintenance-nya?</span>
+                                        <span id="contact-faq-icon-9" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-9" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Umumnya tersedia opsi dukungan (support) dan maintenance sesuai kebutuhan operasional mulai dari remote support, pengecekan berkala, sampai penanganan gangguan/kalibrasi (jika diperlukan).
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Column (FAQ 10 - 18) -->
+                            <div class="space-y-4">
+                                <!-- FAQ Item 10 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(10)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Apakah bisa uji coba dulu (Pilot/PoC) sebelum implementasi besar?</span>
+                                        <span id="contact-faq-icon-10" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-10" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Tentu bisa. Pilot/PoC membantu memastikan sensor, konektivitas, dan dashboard sesuai ekspektasi sebelum scale ke banyak titik.
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 11 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(11)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Apakah CV AMAN terkait SPARING/KLHK?</span>
+                                        <span id="contact-faq-icon-11" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-11" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        CV AMAN memang menyediakan konteks implementasi terkait SPARING. Untuk kebutuhan spesifik (format, parameter, integrasi, dan alur pelaporan), biasanya disesuaikan lagi di tahap diskusi dan desain solusi.
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 12 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(12)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>CV AMAN itu bergerak di bidang apa?</span>
+                                        <span id="contact-faq-icon-12" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-12" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        CV AMAN fokus pada custom engineering technology, telemetry, dan solusi remote monitoring berbasis IoT untuk kebutuhan industri mulai dari akuisisi data sensor, pengiriman data, sampai dashboard dan sistem peringatan (early warning).
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 13 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(13)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Bagaimana cara mendapatkan penawaran harga?</span>
+                                        <span id="contact-faq-icon-13" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-13" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Harga biasanya tergantung jumlah titik, jenis sensor/perangkat, kebutuhan konektivitas, kebutuhan dashboard/integrasi, dan level support. Jika memang ada kebutuhan secara CUSTOM kirim kebutuhan minimum (lokasi, jumlah titik, parameter, target waktu) untuk dibuatkan estimasi.
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 14 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(14)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Kalau Produk CV AMAN banyak, saya harus mulai darimana?</span>
+                                        <span id="contact-faq-icon-14" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-14" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Mulai dari kebutuhan dan parameter yang mau dimonitor (mis. level, tekanan, getaran, deformasi, cuaca, kualitas lingkungan, dll). Setelah itu baru dipilih kombinasi perangkat, sensor, dan sistem monitoring yang paling pas, jadi Anda tidak perlu hafal semua produk.
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 15 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(15)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Kalau saya mau demo, bagaimana langkahnya?</span>
+                                        <span id="contact-faq-icon-15" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-15" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Tinggal hubungi tim melalui halaman Contact, jelaskan industri dan kebutuhan monitoring kamu, lalu tim bisa jadwalkan demo/assessment.
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 16 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(16)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Industri apa saja yang cocok menggunakan solusi dari CV AMAN?</span>
+                                        <span id="contact-faq-icon-16" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-16" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Umumnya cocok untuk sektor mining, pertanian, dan berbagai aplikasi industri lain yang butuh monitoring jarak jauh, pencatatan data berkelanjutan, dan alarm/peringatan otomatis.
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 17 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(17)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Solusi yang ditawarkan dalam bentuk apa saja?</span>
+                                        <span id="contact-faq-icon-17" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-17" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Biasanya kombinasi: perangkat lapangan (sensor + data logger/gateway), konektivitas (sesuai lokasi), platform monitoring (dashboard), notifikasi/alarm, serta layanan implementasi dan dukungan (support).
+                                    </div>
+                                </div>
+
+                                <!-- FAQ Item 18 -->
+                                <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300">
+                                    <button onclick="toggleContactFaq(18)" class="w-full px-6 py-4 flex items-center justify-between text-left text-white font-semibold text-sm sm:text-base focus:outline-none">
+                                        <span>Sistem monitoring-nya realtime atau berkala?</span>
+                                        <span id="contact-faq-icon-18" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
+                                    </button>
+                                    <div id="contact-faq-content-18" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                                        Bisa keduanya. Untuk kebutuhan operasional dan keselamatan biasanya dibuat realtime/near realtime, sementara untuk pelaporan bisa diatur intervalnya sesuai kebutuhan.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-darkbg text-slate-500 text-xs sm:text-sm py-12 border-t border-white/5 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                
+                <div class="md:col-span-2">
+                    <span class="text-xl font-extrabold text-white tracking-wider">CV <span class="text-cybergreen">AMAN</span></span>
+                    <p class="mt-4 text-slate-400 max-w-sm leading-relaxed">
+                        Pionir penyedia solusi telemetri peringatan dini terpercaya, andal, dan tersertifikasi resmi di Indonesia. Berkomitmen menjaga keselamatan kerja serta kelestarian alam berkelanjutan.
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Navigasi</h5>
+                    <ul class="space-y-2 text-slate-400 text-xs">
+                        <li><a href="#/home" class="hover:text-cybergreen transition-colors">Beranda</a></li>
+                        <li><a href="#/solusi" class="hover:text-cybergreen transition-colors">Solusi IoT</a></li>
+                        <li><a href="#/demo" class="hover:text-cybergreen transition-colors">Live Demo</a></li>
+                        <li><a href="#/keunggulan" class="hover:text-cybergreen transition-colors">Keunggulan</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Kontak Info</h5>
+                    <p class="text-slate-400 leading-relaxed text-xs">
+                        Email: info@sensorwarning.id<br>
+                        Support: support@sensorwarning.id<br>
+                        Website Resmi: <a href="https://sensorwarning.id" target="_blank" class="text-cybergreen underline">sensorwarning.id</a>
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+                <p>&copy; 2026 CV AMAN (sensorwarning.id). Seluruh Hak Cipta Dilindungi Undang-Undang.</p>
+                <p>Ecosystem Rebrand Framework Asset v4.2</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON (POJOK KANAN BAWAH) -->
+    <a href="https://wa.me/6281234567890?text=Halo%20PT%20AMAN%2C%20saya%20tertarik%20dengan%20solusi%20IoT%20dan%20sensor%20telemetri%20di%20sensorwarning.id" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl transition-all duration-300 hover:scale-110 hover:bg-[#20ba5a] active:scale-95 group focus:outline-none"
+       aria-label="Hubungi Kami Via WhatsApp">
+        
+        <!-- Ripple Effect Pulsing Animation -->
+        <span class="absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75 animate-ping pointer-events-none group-hover:opacity-40"></span>
+        
+        <!-- WhatsApp SVG Icon -->
+        <svg class="w-7 h-7 relative z-10 fill-current" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.703 1.456h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- CUSTOM POPUP CONTAINER FOR NOTIFICATIONS -->
+    <div id="toast-container" class="fixed top-24 right-6 z-50 space-y-3 pointer-events-none"></div>
+
+    <!-- ROUTING & WEB LOGIC COMPONENT SCRIPT -->
+    <script>
+        // CLIENT-SIDE ROUTER SYSTEM
+        const navLinks = document.querySelectorAll('.nav-item, .mobile-nav-item');
+        const viewPanes = document.querySelectorAll('.view-pane');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburger = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+
+        // Page Router function
+        function handleRouting() {
+            let route = window.location.hash || '#/home';
+            
+            // Clean route path
+            const page = route.replace('#/', '');
+            
+            // Activate view pane
+            let targetPane = document.getElementById(`view-${page}`);
+            if (!targetPane) {
+                // Fallback to home
+                targetPane = document.getElementById('view-home');
+                window.location.hash = '#/home';
+                return;
+            }
+
+            // Deactivate all views and activate current target view
+            viewPanes.forEach(pane => pane.classList.remove('active'));
+            targetPane.classList.add('active');
+
+            // Update Navigation Menu indicators
+            navLinks.forEach(link => {
+                const linkVal = link.getAttribute('data-nav-link');
+                if (linkVal === page) {
+                    link.classList.remove('text-slate-400');
+                    link.classList.add('text-cybergreen', 'font-extrabold', 'shadow-neon-glow');
+                } else {
+                    link.classList.add('text-slate-400');
+                    link.classList.remove('text-cybergreen', 'font-extrabold', 'shadow-neon-glow');
+                }
+            });
+
+            // Auto-scroll window to top on route change
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+
+        // Initialize Router Listeners
+        window.addEventListener('hashchange', handleRouting);
+        window.addEventListener('load', handleRouting);
+
+        // Mobile Hamburger menu toggle actions
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            hamburger.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Auto close mobile navbar menu drawer when a sublink gets clicked
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                hamburger.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Collapsible Contact Page FAQ Accordion Toggler
+        function toggleContactFaq(index) {
+            const content = document.getElementById(`contact-faq-content-${index}`);
+            const icon = document.getElementById(`contact-faq-icon-${index}`);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.textContent = '−';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.textContent = '+';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Collapsible Homepage FAQ Accordion Toggler
+        function toggleHomeFaq(index) {
+            const content = document.getElementById(`home-faq-content-${index}`);
+            const icon = document.getElementById(`home-faq-icon-${index}`);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.textContent = '−';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.textContent = '+';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // CUSTOM TOAST NOTIFICATION FUNCTION (Alternative to forbidden alert/confirm)
+        function triggerToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            let bgClass = 'bg-slate-900 border-cybergreen/30';
+            let textClass = 'text-white';
+            let icon = '✔';
+            
+            if (type === 'danger') {
+                bgClass = 'bg-slate-900 border-red-500/30 shadow-neon-danger';
+                textClass = 'text-red-400';
+                icon = '❌';
+            } else if (type === 'warning') {
+                bgClass = 'bg-slate-900 border-yellow-500/30 shadow-neon-warning';
+                textClass = 'text-yellow-400';
+                icon = '⚠️';
+            } else {
+                bgClass = 'bg-slate-900 border-cybergreen/40 shadow-neon-glow';
+            }
+
+            toast.className = `p-4 rounded-xl border ${bgClass} ${textClass} text-xs font-bold shadow-2xl transition-all duration-300 opacity-0 transform translate-y-2 pointer-events-auto flex items-center gap-3`;
+            toast.innerHTML = `<span>${icon}</span> <span>${message}</span>`;
+            
+            container.appendChild(toast);
+            
+            // Trigger animation
+            setTimeout(() => {
+                toast.classList.remove('opacity-0', 'translate-y-2');
+            }, 10);
+
+            // Auto dismiss toast after 4.5 seconds
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 4500);
+        }
+
+        // Handle contact form submission
+        const cForm = document.getElementById('contactForm');
+        cForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            triggerToast('Formulir penawaran harga Anda berhasil dikirim ke CV AMAN! Kami akan segera menghubungi Anda.', 'success');
+            cForm.reset();
+        });
+
+        // INTERACTIVE LIVE DEMO PANEL CONTROLS SYSTEM
+        const sliderExt = document.getElementById('slider-ext');
+        const sliderPh = document.getElementById('slider-ph');
+        
+        const sliderValExt = document.getElementById('slider-val-ext');
+        const sliderValPh = document.getElementById('slider-val-ph');
+
+        const dashValExt = document.getElementById('dash-val-ext');
+        const dashValPh = document.getElementById('dash-val-ph');
+
+        const cardExt = document.getElementById('card-ext');
+        const cardPh = document.getElementById('card-ph');
+
+        const statusExt = document.getElementById('dash-status-ext');
+        const statusPh = document.getElementById('dash-status-ph');
+
+        const alertBanner = document.getElementById('ews-alert-banner');
+        const alertTitle = document.getElementById('ews-alert-title');
+        const alertDesc = document.getElementById('ews-alert-desc');
+        const alertEmoji = document.getElementById('ews-alert-emoji');
+        const graphPath = document.getElementById('graph-path');
+
+        function updateSimulation() {
+            const extVal = parseFloat(sliderExt.value);
+            const phVal = parseFloat(sliderPh.value);
+
+            // Update sliders labels
+            sliderValExt.textContent = `${extVal.toFixed(2)} mm`;
+            sliderValPh.textContent = `${phVal.toFixed(2)} pH`;
+
+            // Update dashboard monitor values
+            dashValExt.textContent = extVal.toFixed(2);
+            dashValPh.textContent = phVal.toFixed(2);
+
+            let hasWarning = false;
+            let warningTitle = "PERINGATAN DARURAT SENSOR";
+            let warningDesc = "";
+            let emoji = "⚠️";
+
+            // Evaluasi Kriteria Sensor Pergerakan Tanah (Extensometer)
+            if (extVal >= 9.0) {
+                hasWarning = true;
+                warningDesc = "Pergeseran struktur lereng kritis melebihi batas aman (9.0mm)! Evakuasi segera area Tambang Site Alpha.";
+                emoji = "🚨";
+                
+                cardExt.className = "bg-red-950/40 p-4 rounded-xl border border-red-500/50 shadow-neon-danger transition-colors duration-300";
+                statusExt.textContent = "✖ BAHAYA LONGSOR KRITIS";
+                statusExt.className = "text-[9px] font-bold text-red-400";
+            } else if (extVal >= 5.0) {
+                hasWarning = true;
+                warningDesc = "Deteksi dini: Pergeseran tanah sedang terdeteksi (5.0mm). Tim geoteknik harap bersiap.";
+                emoji = "⚠️";
+
+                cardExt.className = "bg-yellow-950/40 p-4 rounded-xl border border-yellow-500/50 shadow-neon-warning transition-colors duration-300";
+                statusExt.textContent = "▲ WASPADA GERAKAN SEDANG";
+                statusExt.className = "text-[9px] font-bold text-yellow-400";
+            } else {
+                cardExt.className = "bg-white/5 p-4 rounded-xl border border-white/5 transition-colors duration-300";
+                statusExt.textContent = "✔ Status Normal & Aman";
+                statusExt.className = "text-[9px] font-bold text-emerald-400";
+            }
+
+            // Evaluasi Kriteria Sensor Kualitas Air Limbah (pH Air)
+            if (phVal < 6.0 || phVal > 9.0) {
+                hasWarning = true;
+                warningDesc = warningDesc || `Tingkat keasaman air limbah (${phVal.toFixed(1)} pH) melanggar standar batas baku mutu KLHK RI!`;
+                emoji = phVal < 4.0 || phVal > 11.0 ? "💀" : "⚠️";
+
+                cardPh.className = "bg-red-950/40 p-4 rounded-xl border border-red-500/50 shadow-neon-danger transition-colors duration-300";
+                statusPh.textContent = "✖ LIMBAH MELEBIHI BAKU MUTU";
+                statusPh.className = "text-[9px] font-bold text-red-400";
+            } else {
+                cardPh.className = "bg-white/5 p-4 rounded-xl border border-white/5 transition-colors duration-300";
+                statusPh.textContent = "✔ Sesuai Ambang Batas KLHK";
+                statusPh.className = "text-[9px] font-bold text-emerald-400";
+            }
+
+            // Action alert banner trigger
+            if (hasWarning) {
+                alertBanner.classList.remove('hidden');
+                alertBanner.className = `p-4 rounded-xl border flex items-center justify-between mb-6 ${
+                    emoji === '🚨' || emoji === '💀' 
+                    ? 'bg-red-950/70 border-red-500/50 text-red-400 shadow-neon-danger' 
+                    : 'bg-yellow-950/70 border-yellow-500/50 text-yellow-400 shadow-neon-warning'
+                }`;
+                alertTitle.textContent = emoji === '🚨' || emoji === '💀' ? "STATUS: BAHAYA OPERASIONAL!" : "STATUS: KONDISI SIAGA";
+                alertDesc.textContent = warningDesc;
+                alertEmoji.textContent = emoji;
+
+                // Make the graph color look unstable
+                graphPath.setAttribute('stroke', emoji === '🚨' || emoji === '💀' ? '#FF3366' : '#FFB800');
+                graphPath.setAttribute('class', `drop-shadow-[0_0_8px_${emoji === '🚨' || emoji === '💀' ? 'rgba(255,51,102,0.6)' : 'rgba(255,184,0,0.6)'}] transition-all duration-300`);
+            } else {
+                alertBanner.classList.add('hidden');
+                graphPath.setAttribute('stroke', '#00FF66');
+                graphPath.setAttribute('class', 'drop-shadow-[0_0_8px_rgba(0,255,102,0.5)] transition-all duration-300');
+            }
+        }
+
+        // Interactive Telemetry Workflow steps definitions
+        const stepsData = {
+            1: {
+                badge: "PROSES FASE 01: SENSOR FIELD",
+                icon: "📡",
+                title: "Akuisisi Data di Lapangan",
+                desc: "Setiap titik lereng tambang dipasang unit micro-extensometer digital yang memonitor gesekan sub-milimeter secara konstan. Dilengkapi baterai berpelindung cuaca tangguh IP68.",
+                spec1: "X-Y-Z Axis Displacement",
+                spec2: "≤ 0.05 Detik"
+            },
+            2: {
+                badge: "PROSES FASE 02: LONGRANGE TRANSMISSION",
+                icon: "📶",
+                title: "Transmisi Radio Nirkabel Jarak Jauh",
+                desc: "Data dikirim menggunakan modul radio frekuensi rendah LoRaWAN terenkripsi militer. Mampu menembus rimbunnya vegetasi hutan tropis dan cuaca buruk sejauh hingga 4.000 meter ke unit Gateway.",
+                spec1: "Sub-GHz LoRa Mesh",
+                spec2: "Jangkauan s.d 4 Km"
+            },
+            3: {
+                badge: "PROSES FASE 03: CLOUD ENGINE PROCESSING",
+                icon: "💻",
+                title: "Analisis AI di AMAN Cloud",
+                desc: "Server aman CV AMAN menyerap ribuan telemetri data mentah secara real-time. Algoritma pembelajaran mesin menganalisis tren kecepatan pergeseran tanah untuk menyimpulkan status keamanan.",
+                spec1: "Machine Learning AI Engine",
+                spec2: "Keandalan Server SLA 99.99%"
+            },
+            4: {
+                badge: "PROSES FASE 04: AUTOMATED EMERGENCY WARN",
+                icon: "🚨",
+                title: "Aktivasi Sirine & Alert Multi-Channel",
+                desc: "Jika sistem menyimpulkan anomali kritis, server cloud langsung mengirimkan trigger untuk membunyikan sirine suar fisik di site tambang serta mengirim pesan siaga instan ke grup koordinasi tim penolong.",
+                spec1: "SMS, WA & Sirine Fisik Trigger",
+                spec2: "Kecepatan Broadcast ≤ 2.4 Detik"
+            }
+        };
+
+        function activateWorkflowStep(stepIndex) {
+            // Reset all buttons style
+            for (let i = 1; i <= 4; i++) {
+                const btn = document.getElementById(`workflow-btn-${i}`);
+                if (btn) {
+                    btn.className = "w-full text-left p-5 rounded-2xl border border-white/5 bg-transparent hover:bg-white/5 transition-all duration-300 group flex items-start gap-4";
+                    btn.querySelector('span').className = "w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center font-extrabold text-lg shrink-0 group-hover:scale-105 transition-transform";
+                    btn.querySelector('h4').className = "text-slate-300 font-bold text-base transition-colors group-hover:text-white";
+                }
+            }
+
+            // Highlight active button
+            const activeBtn = document.getElementById(`workflow-btn-${stepIndex}`);
+            if (activeBtn) {
+                activeBtn.className = "w-full text-left p-5 rounded-2xl border border-cybergreen/30 bg-white/5 hover:bg-white/10 transition-all duration-300 group flex items-start gap-4";
+                activeBtn.querySelector('span').className = "w-10 h-10 rounded-xl bg-cybergreen text-darkbg flex items-center justify-center font-extrabold text-lg shrink-0 group-hover:scale-105 transition-transform";
+                activeBtn.querySelector('h4').className = "text-white font-bold text-base transition-colors group-hover:text-cybergreen";
+            }
+
+            // Update display content
+            const data = stepsData[stepIndex];
+            document.getElementById('workflow-badge').textContent = data.badge;
+            document.getElementById('workflow-graphic').textContent = data.icon;
+            document.getElementById('workflow-display-title').textContent = data.title;
+            document.getElementById('workflow-display-desc').textContent = data.desc;
+            document.getElementById('workflow-spec-1').textContent = data.spec1;
+            document.getElementById('workflow-spec-2').textContent = data.spec2;
+        }
+
+        // Slider listeners
+        sliderExt.addEventListener('input', updateSimulation);
+        sliderPh.addEventListener('input', updateSimulation);
+
+        // Function dismiss EWS alert manually
+        function dismissEwsAlert() {
+            alertBanner.classList.add('hidden');
+            triggerToast('Simulasi alarm diabaikan oleh petugas.', 'warning');
+        }
+    </script>
+</body>
+</html>

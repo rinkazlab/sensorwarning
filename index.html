@@ -562,7 +562,7 @@
                                     <span id="home-faq-icon-9" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
                                 </button>
                                 <div id="home-faq-content-9" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
-                                    Umumnya tersedia opsi dukungan (support) dan maintenance sesuai kebutuhan operasional mulai dari remote support, pengecekan berkala, sampai penanganan gangguan/kalibrasi (jika diperlukan).
+                                    Umumnya tersedia opsi dukungan (support) and maintenance sesuai kebutuhan operasional mulai dari remote support, pengecekan berkala, sampai penanganan gangguan/kalibrasi (jika diperlukan).
                                 </div>
                             </div>
                         </div>
@@ -1070,50 +1070,50 @@
 
                         <!-- Contact Form UI Grid -->
                         <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl">
-    <!-- Ganti form lama dengan ini -->
-    <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
-        
-        <!-- INI PENTING: Jangan hapus baris ini -->
-        <input type="hidden" name="access_key" value="6ff55e95-0afc-4013-9592-4fb04a965346">
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-                <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Nama Lengkap</label>
-                <input type="text" name="name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-cybergreen transition-all" placeholder="Nama Anda">
-            </div>
-            <div>
-                <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Nama Perusahaan / Instansi</label>
-                <input type="text" name="company" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-cybergreen transition-all" placeholder="PT Tambang Maju">
-            </div>
-        </div>
+                            <!-- Ganti form lama dengan ini -->
+                            <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+                                
+                                <!-- INI PENTING: Jangan hapus baris ini -->
+                                <input type="hidden" name="access_key" value="6ff55e95-0afc-4013-9592-4fb04a965346">
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Nama Lengkap</label>
+                                        <input type="text" name="name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-cybergreen transition-all" placeholder="Nama Anda">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Nama Perusahaan / Instansi</label>
+                                        <input type="text" name="company" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-cybergreen transition-all" placeholder="PT Tambang Maju">
+                                    </div>
+                                </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-                <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Alamat Email Bisnis</label>
-                <input type="email" name="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-cybergreen transition-all" placeholder="nama@perusahaan.com">
-            </div>
-            <div>
-                <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Kebutuhan Solusi</label>
-                <select name="solution" class="w-full bg-darkbg border border-white/10 rounded-xl px-4 py-2.5 text-slate-300 text-sm focus:outline-none focus:border-cybergreen transition-all">
-                    <option value="Geovos Extensometer (EWS Longsor)">Geovos Extensometer (EWS Longsor)</option>
-                    <option value="Geovos SPARING (Limbah KLHK)">Geovos SPARING (Limbah KLHK)</option>
-                    <option value="Industrial Automation & SCADA">Industrial Automation & SCADA</option>
-                    <option value="Predictive Maintenance 4.0">Predictive Maintenance 4.0</option>
-                    <option value="Lainnya">Lainnya / Kustom Konsultasi</option>
-                </select>
-            </div>
-        </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Alamat Email Bisnis</label>
+                                        <input type="email" name="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-cybergreen transition-all" placeholder="nama@perusahaan.com">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Kebutuhan Solusi</label>
+                                        <select name="solution" class="w-full bg-darkbg border border-white/10 rounded-xl px-4 py-2.5 text-slate-300 text-sm focus:outline-none focus:border-cybergreen transition-all">
+                                            <option value="Geovos Extensometer (EWS Longsor)">Geovos Extensometer (EWS Longsor)</option>
+                                            <option value="Geovos SPARING (Limbah KLHK)">Geovos SPARING (Limbah KLHK)</option>
+                                            <option value="Industrial Automation & SCADA">Industrial Automation & SCADA</option>
+                                            <option value="Predictive Maintenance 4.0">Predictive Maintenance 4.0</option>
+                                            <option value="Lainnya">Lainnya / Kustom Konsultasi</option>
+                                        </select>
+                                    </div>
+                                </div>
 
-        <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Detail Pesan Kebutuhan Lapangan</label>
-            <textarea name="message" rows="3" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-cybergreen transition-all" placeholder="Tuliskan gambaran singkat lokasi proyek..."></textarea>
-        </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Detail Pesan Kebutuhan Lapangan</label>
+                                    <textarea name="message" rows="3" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-cybergreen transition-all" placeholder="Tuliskan gambaran singkat lokasi proyek..."></textarea>
+                                </div>
 
-        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-cybergreen text-darkbg font-bold text-center text-sm shadow-neon-glow hover:shadow-neon-glow-hover transition-all duration-300">
-            Kirim Formulir Penawaran Resmi
-        </button>
-    </form>
-</div>
+                                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-cybergreen text-darkbg font-bold text-center text-sm shadow-neon-glow hover:shadow-neon-glow-hover transition-all duration-300">
+                                    Kirim Formulir Penawaran Resmi
+                                </button>
+                            </form>
+                        </div>
                     </div>
 
                     <!-- Collapsible FAQ Accordion (Updated with Homepage FAQs in 2-Column Grid) -->
@@ -1277,7 +1277,7 @@
                                         <span id="contact-faq-icon-14" class="text-cybergreen font-bold text-lg transition-transform duration-300">+</span>
                                     </button>
                                     <div id="contact-faq-content-14" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
-                                        Mulai dari kebutuhan dan parameter yang mau dimonitor (mis. level, tekanan, getaran, deformasi, cuaca, kualitas lingkungan, dll). Setelah itu baru dipilih kombinasi perangkat, sensor, dan sistem monitoring yang paling pas, jadi Anda tidak perlu hafal semua produk.
+                                        Mulai dari kebutuhan and parameter yang mau dimonitor (mis. level, tekanan, getaran, deformasi, cuaca, kualitas lingkungan, dll). Setelah itu baru dipilih kombinasi perangkat, sensor, dan sistem monitoring yang paling pas, jadi Anda tidak perlu hafal semua produk.
                                     </div>
                                 </div>
 

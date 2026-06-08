@@ -1533,11 +1533,10 @@
         }
 
         // Handle contact form submission
+        
         const cForm = document.getElementById('contactForm');
         cForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            triggerToast('Formulir penawaran harga Anda berhasil dikirim ke CV AMAN! Kami akan segera menghubungi Anda.', 'success');
-            cForm.reset();
+        triggerToast('Mengirim formulir...', 'success');
         });
 
         // INTERACTIVE LIVE DEMO PANEL CONTROLS SYSTEM

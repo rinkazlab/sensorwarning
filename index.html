@@ -1531,7 +1531,36 @@
                 }, 300);
             }, 4500);
         }
+        const form = document.getElementById('contactForm');
+form.addEventListener("submit", function(e) {
+    e.preventDefault(); // Mencegah pindah halaman
+    
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
 
+    triggerToast('Sedang mengirim pesan...', 'success');
+
+    fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: json
+    })
+    .then(async (response) => {
+        if (response.status == 200) {
+            triggerToast('Formulir penawaran harga Anda berhasil dikirim ke CV AMAN!', 'success');
+            form.reset();
+        } else {
+            triggerToast('Terjadi kesalahan, silakan coba lagi.', 'danger');
+        }
+    })
+    .catch(error => {
+        triggerToast('Terjadi kesalahan koneksi.', 'danger');
+    });
+});
         // Handle contact form submission
         
         const cForm = document.getElementById('contactForm');

@@ -90,6 +90,25 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #00FF66;
         }
+
+        /* Subtle Sonar Radar Waves for WhatsApp Floating Button */
+        @keyframes sonar-wave {
+            0% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(1.8);
+                opacity: 0;
+            }
+        }
+        .sonar-wave-1 {
+            animation: sonar-wave 2.5s infinite linear;
+        }
+        .sonar-wave-2 {
+            animation: sonar-wave 2.5s infinite linear;
+            animation-delay: 1.25s;
+        }
     </style>
 </head>
 <body class="text-slate-200 antialiased selection:bg-cybergreen/30 selection:text-cybergreen flex flex-col min-h-screen">
@@ -141,7 +160,36 @@
     <main class="flex-grow pt-20">
 
         <div id="view-home" class="view-pane active">
-            <section class="relative py-20 md:py-32 overflow-hidden flex flex-col justify-center min-h-[85vh]">
+            <section class="relative py-20 md:py-28 overflow-hidden flex flex-col justify-center min-h-[80vh]">
+                <div id="hero-bg-slideshow" class="absolute inset-0 pointer-events-none select-none">
+                    <img src="https://res.cloudinary.com/dyee6b4lb/image/upload/v1782111813/AQMS_jg28nt.jpg" alt="AQMS - Air Quality Monitoring System" class="hero-bg-img absolute inset-0 w-full h-full object-cover opacity-50">
+                    <img src="https://res.cloudinary.com/dyee6b4lb/image/upload/v1782111818/awlr_lurjmk.jpg" alt="AWLR - Automatic Water Level Recorder" class="hero-bg-img absolute inset-0 w-full h-full object-cover opacity-0">
+                    <img src="https://res.cloudinary.com/dyee6b4lb/image/upload/v1782111813/AWS_vluqn1.jpg" alt="AWS - Automatic Weather Station" class="hero-bg-img absolute inset-0 w-full h-full object-cover opacity-0">
+                    <img src="https://res.cloudinary.com/dyee6b4lb/image/upload/v1782111813/Extensometer_vzqrwn.jpg" alt="Extensometer" class="hero-bg-img absolute inset-0 w-full h-full object-cover opacity-0">
+                    <img src="https://res.cloudinary.com/dyee6b4lb/image/upload/v1782111814/Geovos_SPARING_gwzaxl.jpg" alt="Geovos SPARING" class="hero-bg-img absolute inset-0 w-full h-full object-cover opacity-0">
+                    <img src="https://res.cloudinary.com/dyee6b4lb/image/upload/v1782111812/Alarm_Tsunami_d7odyq.jpg" alt="Alarm Tsunami" class="hero-bg-img absolute inset-0 w-full h-full object-cover opacity-0">
+                    <div class="absolute inset-0 bg-gradient-to-b from-darkbg via-darkbg/70 to-darkbg"></div>
+                    <div class="absolute inset-0 bg-darkbg/20"></div>
+                </div>
+                <style>
+                    .hero-bg-img {
+                        transition: opacity 1.5s ease-in-out;
+                    }
+                </style>
+                <script>
+                    (function() {
+                        var heroImgs = document.querySelectorAll('#hero-bg-slideshow .hero-bg-img');
+                        var heroIdx = 0;
+                        if (heroImgs.length > 1) {
+                            setInterval(function() {
+                                heroImgs[heroIdx].style.opacity = '0';
+                                heroIdx = (heroIdx + 1) % heroImgs.length;
+                                heroImgs[heroIdx].style.opacity = '0.5';
+                            }, 5000);
+                        }
+                    })();
+                </script>
+
                 <div class="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-cybergreen/10 rounded-full blur-[120px] pointer-events-none"></div>
                 <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-emerald-600/10 rounded-full blur-[150px] pointer-events-none"></div>
                 
@@ -209,6 +257,7 @@
                 </div>
             </section>
 
+            <!-- CLIENT LOGO TICKER SECTION (Moved here under Hero statistics to bridge empty space) -->
             <section class="py-12 relative border-t border-b border-white/5 bg-darkbg/80 overflow-hidden">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-6">
                     <p class="text-xs font-bold text-slate-500 tracking-widest uppercase">Dipercaya oleh Pemimpin Industri Terkemuka</p>
@@ -234,147 +283,6 @@
                             <div class="text-lg sm:text-xl font-bold tracking-wider text-slate-400 hover:text-cybergreen transition-colors cursor-default whitespace-nowrap">Kayan Putra Utama Coal</div>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <section class="py-20 md:py-28 relative border-b border-white/5 bg-darkbg/40">
-                <div class="absolute top-1/2 left-0 w-[250px] h-[250px] bg-cybergreen/5 rounded-full blur-[100px] pointer-events-none"></div>
-                
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-3xl mx-auto mb-16">
-                        <span class="text-xs font-bold text-cybergreen tracking-widest uppercase bg-cybergreen/10 px-3 py-1 rounded-full">Alur Sistem Terintegrasi</span>
-                        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-4">Bagaimana Telemetri Melindungi Site Anda?</h2>
-                        <p class="text-slate-400 mt-4 text-sm sm:text-base">Mulai dari pendeteksian di ujung tebing terdalam hingga pemberitahuan darurat ke smartphone manajemen dalam kurun waktu kurang dari 3 detik.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                        <div class="lg:col-span-5 space-y-4">
-                            <button onclick="activateWorkflowStep(1)" id="workflow-btn-1" class="w-full text-left p-5 rounded-2xl border border-cybergreen/30 bg-white/5 hover:bg-white/10 transition-all duration-300 group flex items-start gap-4">
-                                <span class="w-10 h-10 rounded-xl bg-cybergreen text-darkbg flex items-center justify-center font-extrabold text-lg shrink-0 group-hover:scale-105 transition-transform">01</span>
-                                <div>
-                                    <h4 class="text-white font-bold text-base transition-colors group-hover:text-cybergreen">Akuisisi Data di Lapangan</h4>
-                                    <p class="text-xs text-slate-400 mt-1">Sensor Extensometer, Geotech, dan SPARING mengukur parameter fisik per-milidetik.</p>
-                                </div>
-                            </button>
-
-                            <button onclick="activateWorkflowStep(2)" id="workflow-btn-2" class="w-full text-left p-5 rounded-2xl border border-white/5 bg-transparent hover:bg-white/5 transition-all duration-300 group flex items-start gap-4">
-                                <span class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center font-extrabold text-lg shrink-0 group-hover:scale-105 transition-transform">02</span>
-                                <div>
-                                    <h4 class="text-slate-300 font-bold text-base transition-colors group-hover:text-white">Transmisi Radio Nirkabel Jarak Jauh</h4>
-                                    <p class="text-xs text-slate-500 mt-1">Mengirimkan paket data terenkripsi melalui teknologi LoRaWAN sejauh hingga 4 kilometer.</p>
-                                </div>
-                            </button>
-
-                            <button onclick="activateWorkflowStep(3)" id="workflow-btn-3" class="w-full text-left p-5 rounded-2xl border border-white/5 bg-transparent hover:bg-white/5 transition-all duration-300 group flex items-start gap-4">
-                                <span class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center font-extrabold text-lg shrink-0 group-hover:scale-105 transition-transform">03</span>
-                                <div>
-                                    <h4 class="text-slate-300 font-bold text-base transition-colors group-hover:text-white">Analisis AI di AMAN Cloud</h4>
-                                    <p class="text-xs text-slate-500 mt-1">Algoritma cerdas memproses tren data untuk memprediksi potensi pergeseran tanah.</p>
-                                </div>
-                            </button>
-
-                            <button onclick="activateWorkflowStep(4)" id="workflow-btn-4" class="w-full text-left p-5 rounded-2xl border border-white/5 bg-transparent hover:bg-white/5 transition-all duration-300 group flex items-start gap-4">
-                                <span class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center font-extrabold text-lg shrink-0 group-hover:scale-105 transition-transform">04</span>
-                                <div>
-                                    <h4 class="text-slate-300 font-bold text-base transition-colors group-hover:text-white">Aktivasi Sirine & Alert Multi-Channel</h4>
-                                    <p class="text-xs text-slate-500 mt-1">Jika melewati batas kritis, klakson lapangan berbunyi & tim dikabari lewat WhatsApp.</p>
-                                </div>
-                            </button>
-                        </div>
-
-                        <div class="lg:col-span-7 p-6 sm:p-8 glass-card rounded-3xl min-h-[380px] flex flex-col justify-between relative overflow-hidden border-cybergreen/10">
-                            <div class="absolute -right-24 -top-24 w-60 h-60 bg-cybergreen/5 rounded-full blur-[80px] pointer-events-none"></div>
-                            
-                            <div class="flex items-center justify-between pb-4 border-b border-white/5">
-                                <span id="workflow-badge" class="text-xs font-mono font-bold text-cybergreen uppercase tracking-widest">PROSES FASE 01: SENSOR FIELD</span>
-                                <span class="text-xs text-slate-500 font-mono select-none">Live Schema v2.6</span>
-                            </div>
-
-                            <div class="py-8 flex flex-col sm:flex-row items-center gap-8">
-                                <div id="workflow-graphic" class="w-32 h-32 rounded-2xl bg-cybergreen/10 border border-cybergreen/20 flex items-center justify-center text-cybergreen text-5xl shadow-neon-glow shrink-0">
-                                    📡
-                                </div>
-                                <div>
-                                    <h3 id="workflow-display-title" class="text-xl sm:text-2xl font-extrabold text-white">Sensor Cerdas Berspesifikasi Tinggi</h3>
-                                    <p id="workflow-display-desc" class="text-slate-400 text-sm mt-3 leading-relaxed">
-                                        Setiap titik lereng tambang dipasang unit micro-extensometer digital yang memonitor gesekan sub-milimeter secara konstan. Dilengkapi baterai berpelindung cuaca tangguh IP68.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="pt-6 border-t border-white/5 grid grid-cols-2 gap-4 text-xs">
-                                <div>
-                                    <span class="text-slate-500 block">Parameter Utama</span>
-                                    <span id="workflow-spec-1" class="text-white font-mono font-semibold mt-0.5 block">X-Y-Z Axis Displacement</span>
-                                </div>
-                                <div>
-                                    <span class="text-slate-500 block">Waktu Respons</span>
-                                    <span id="workflow-spec-2" class="text-cybergreen font-mono font-semibold mt-0.5 block">≤ 0.05 Detik</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="py-20 md:py-28 relative bg-[radial-gradient(ellipse_at_bottom,rgba(0,255,102,0.01),transparent_50%)]">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-                        <div>
-                            <span class="text-xs font-bold text-cybergreen tracking-widest uppercase">Kepatuhan Regulasi Nasional</span>
-                            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4">Kredibilitas Hukum & Standar Keandalan Industri</h2>
-                            <p class="text-slate-400 mt-4 text-sm sm:text-base leading-relaxed">
-                                Kami memahami bahwa proyek industri berat menuntut kelayakan hukum dan keandalan operasional yang ketat. Seluruh ekosistem perangkat telemetri PT Sensor Warning dikembangkan dengan kepatuhan hukum penuh di Indonesia.
-                            </p>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="p-6 glass-card rounded-2xl border-white/5 hover:border-cybergreen/10 transition-colors">
-                                <span class="text-3xl block mb-2">🇮🇩</span>
-                                <h4 class="text-white font-extrabold text-sm uppercase tracking-wide">TKDN Bersertifikat</h4>
-                                <p class="text-xs text-slate-400 mt-1">Lini produk perakitan lokal dengan persentase TKDN di atas 40%.</p>
-                            </div>
-                            <div class="p-6 glass-card rounded-2xl border-white/5 hover:border-cybergreen/10 transition-colors">
-                                <span class="text-3xl block mb-2">⚖️</span>
-                                <h4 class="text-white font-extrabold text-sm uppercase tracking-wide">Kalibrasi KAN</h4>
-                                <p class="text-xs text-slate-400 mt-1">Sensor telah lolos kalibrasi laboratorium yang diakreditasi resmi oleh KAN.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                            <h4 class="text-white font-extrabold text-base flex items-center justify-between">
-                                <span>KLHK Server Integration</span>
-                                <span class="text-xs px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full font-mono font-bold">100% OK</span>
-                            </h4>
-                            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
-                                Sistem Geovos SPARING kami memiliki skrip integrasi aman yang telah lolos pengujian sinkronisasi API dari server pusat Kementerian Lingkungan Hidup dan Kehutanan RI.
-                            </p>
-                        </div>
-
-                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                            <h4 class="text-white font-extrabold text-base flex items-center justify-between">
-                                <span>Sertifikasi SDPPI</span>
-                                <span class="text-xs px-2.5 py-1 bg-cybergreen/15 text-cybergreen rounded-full font-mono font-bold">TERDAFTAR</span>
-                            </h4>
-                            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
-                                Seluruh pemancar frekuensi radio nirkabel LoraWAN kami mematuhi alokasi lebar pita frekuensi resmi SDPPI Kominfo demi menghindari gangguan frekuensi radio darurat.
-                            </p>
-                        </div>
-
-                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                            <h4 class="text-white font-extrabold text-base flex items-center justify-between">
-                                <span>Sistem Mutu ISO 9001</span>
-                                <span class="text-xs px-2.5 py-1 bg-white/10 text-white rounded-full font-mono font-bold">ISO 9001:2015</span>
-                            </h4>
-                            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
-                                Standar manajemen mutu perakitan fisik hardware, penulisan sistem cloud, hingga pelayanan teknisi purna jual yang profesional dan konsisten.
-                            </p>
-                        </div>
-                    </div>
-
                 </div>
             </section>
 
@@ -490,6 +398,150 @@
                 </div>
             </section>
 
+            <!-- HOW TELEMETRY WORKS SECTION -->
+            <section class="py-20 md:py-28 relative border-b border-white/5 bg-darkbg/40">
+                <div class="absolute top-1/2 left-0 w-[250px] h-[250px] bg-cybergreen/5 rounded-full blur-[100px] pointer-events-none"></div>
+                
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <span class="text-xs font-bold text-cybergreen tracking-widest uppercase bg-cybergreen/10 px-3 py-1 rounded-full">Alur Sistem Terintegrasi</span>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-4">Bagaimana Telemetri Melindungi Site Anda?</h2>
+                        <p class="text-slate-400 mt-4 text-sm sm:text-base">Mulai dari pendeteksian di ujung tebing terdalam hingga pemberitahuan darurat ke smartphone manajemen dalam kurun waktu kurang dari 3 detik.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-5 space-y-4">
+                            <button onclick="activateWorkflowStep(1)" id="workflow-btn-1" class="w-full text-left p-5 rounded-2xl border border-cybergreen/30 bg-white/5 hover:bg-white/10 transition-all duration-300 group flex items-start gap-4">
+                                <span class="w-10 h-10 rounded-xl bg-cybergreen text-darkbg flex items-center justify-center font-extrabold text-lg shrink-0 group-hover:scale-105 transition-transform">01</span>
+                                <div>
+                                    <h4 class="text-white font-bold text-base transition-colors group-hover:text-cybergreen">Akuisisi Data di Lapangan</h4>
+                                    <p class="text-xs text-slate-400 mt-1">Sensor Extensometer, Geotech, dan SPARING mengukur parameter fisik per-milidetik.</p>
+                                </div>
+                            </button>
+
+                            <button onclick="activateWorkflowStep(2)" id="workflow-btn-2" class="w-full text-left p-5 rounded-2xl border border-white/5 bg-transparent hover:bg-white/5 transition-all duration-300 group flex items-start gap-4">
+                                <span class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center font-extrabold text-lg shrink-0 group-hover:scale-105 transition-transform">02</span>
+                                <div>
+                                    <h4 class="text-slate-300 font-bold text-base transition-colors group-hover:text-white">Transmisi Radio Nirkabel Jarak Jauh</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Mengirimkan paket data terenkripsi melalui teknologi LoRaWAN sejauh hingga 4 kilometer.</p>
+                                </div>
+                            </button>
+
+                            <button onclick="activateWorkflowStep(3)" id="workflow-btn-3" class="w-full text-left p-5 rounded-2xl border border-white/5 bg-transparent hover:bg-white/5 transition-all duration-300 group flex items-start gap-4">
+                                <span class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center font-extrabold text-lg shrink-0 group-hover:scale-105 transition-transform">03</span>
+                                <div>
+                                    <h4 class="text-slate-300 font-bold text-base transition-colors group-hover:text-white">Analisis AI di AMAN Cloud</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Algoritma cerdas memproses tren data untuk memprediksi potensi pergeseran tanah.</p>
+                                </div>
+                            </button>
+
+                            <button onclick="activateWorkflowStep(4)" id="workflow-btn-4" class="w-full text-left p-5 rounded-2xl border border-white/5 bg-transparent hover:bg-white/5 transition-all duration-300 group flex items-start gap-4">
+                                <span class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center font-extrabold text-lg shrink-0 group-hover:scale-105 transition-transform">04</span>
+                                <div>
+                                    <h4 class="text-slate-300 font-bold text-base transition-colors group-hover:text-white">Aktivasi Sirine & Alert Multi-Channel</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Jika melewati batas kritis, klakson lapangan berbunyi & tim dikabari lewat WhatsApp.</p>
+                                </div>
+                            </button>
+                        </div>
+
+                        <div class="lg:col-span-7 p-6 sm:p-8 glass-card rounded-3xl min-h-[380px] flex flex-col justify-between relative overflow-hidden border-cybergreen/10">
+                            <div class="absolute -right-24 -top-24 w-60 h-60 bg-cybergreen/5 rounded-full blur-[80px] pointer-events-none"></div>
+                            
+                            <div class="flex items-center justify-between pb-4 border-b border-white/5">
+                                <span id="workflow-badge" class="text-xs font-mono font-bold text-cybergreen uppercase tracking-widest">PROSES FASE 01: SENSOR FIELD</span>
+                                <span class="text-xs text-slate-500 font-mono select-none">Live Schema v2.6</span>
+                            </div>
+
+                            <div class="py-8 flex flex-col sm:flex-row items-center gap-8">
+                                <div id="workflow-graphic" class="w-32 h-32 rounded-2xl bg-cybergreen/10 border border-cybergreen/20 flex items-center justify-center text-cybergreen text-5xl shadow-neon-glow shrink-0">
+                                    📡
+                                </div>
+                                <div>
+                                    <h3 id="workflow-display-title" class="text-xl sm:text-2xl font-extrabold text-white">Sensor Cerdas Berspesifikasi Tinggi</h3>
+                                    <p id="workflow-display-desc" class="text-slate-400 text-sm mt-3 leading-relaxed">
+                                        Setiap titik lereng tambang dipasang unit micro-extensometer digital yang memonitor gesekan sub-milimeter secara konstan. Dilengkapi baterai berpelindung cuaca tangguh IP68.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="pt-6 border-t border-white/5 grid grid-cols-2 gap-4 text-xs">
+                                <div>
+                                    <span class="text-slate-500 block">Parameter Utama</span>
+                                    <span id="workflow-spec-1" class="text-white font-mono font-semibold mt-0.5 block">X-Y-Z Axis Displacement</span>
+                                </div>
+                                <div>
+                                    <span class="text-slate-500 block">Waktu Respons</span>
+                                    <span id="workflow-spec-2" class="text-cybergreen font-mono font-semibold mt-0.5 block">≤ 0.05 Detik</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NATIONAL COMPLIANCE & ACCREDITATIONS SECTION -->
+            <section class="py-20 md:py-28 relative bg-[radial-gradient(ellipse_at_bottom,rgba(0,255,102,0.01),transparent_50%)] border-b border-white/5">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                        <div>
+                            <span class="text-xs font-bold text-cybergreen tracking-widest uppercase">Kepatuhan Regulasi Nasional</span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4">Kredibilitas Hukum & Standar Keandalan Industri</h2>
+                            <p class="text-slate-400 mt-4 text-sm sm:text-base leading-relaxed">
+                                Kami memahami bahwa proyek industri berat menuntut kelayakan hukum dan keandalan operasional yang ketat. Seluruh ekosistem perangkat telemetri PT Sensor Warning dikembangkan dengan kepatuhan hukum penuh di Indonesia.
+                            </p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-6 glass-card rounded-2xl border-white/5 hover:border-cybergreen/10 transition-colors">
+                                <span class="text-3xl block mb-2">🇮🇩</span>
+                                <h4 class="text-white font-extrabold text-sm uppercase tracking-wide">TKDN Bersertifikat</h4>
+                                <p class="text-xs text-slate-400 mt-1">Lini produk perakitan lokal dengan persentase TKDN di atas 40%.</p>
+                            </div>
+                            <div class="p-6 glass-card rounded-2xl border-white/5 hover:border-cybergreen/10 transition-colors">
+                                <span class="text-3xl block mb-2">⚖️</span>
+                                <h4 class="text-white font-extrabold text-sm uppercase tracking-wide">Kalibrasi KAN</h4>
+                                <p class="text-xs text-slate-400 mt-1">Sensor telah lolos kalibrasi laboratorium yang diakreditasi resmi oleh KAN.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
+                            <h4 class="text-white font-extrabold text-base flex items-center justify-between">
+                                <span>KLHK Server Integration</span>
+                                <span class="text-xs px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full font-mono font-bold">100% OK</span>
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                                Sistem Geovos SPARING kami memiliki skrip integrasi aman yang telah lolos pengujian sinkronisasi API dari server pusat Kementerian Lingkungan Hidup dan Kehutanan RI.
+                            </p>
+                        </div>
+
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
+                            <h4 class="text-white font-extrabold text-base flex items-center justify-between">
+                                <span>Sertifikasi SDPPI</span>
+                                <span class="text-xs px-2.5 py-1 bg-cybergreen/15 text-cybergreen rounded-full font-mono font-bold">TERDAFTAR</span>
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                                Seluruh pemancar frekuensi radio nirkabel LoraWAN kami mematuhi alokasi lebar pita frekuensi resmi SDPPI Kominfo demi menghindari gangguan frekuensi radio darurat.
+                            </p>
+                        </div>
+
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
+                            <h4 class="text-white font-extrabold text-base flex items-center justify-between">
+                                <span>Sistem Mutu ISO 9001</span>
+                                <span class="text-xs px-2.5 py-1 bg-white/10 text-white rounded-full font-mono font-bold">ISO 9001:2015</span>
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                                Standar manajemen mutu perakitan fisik hardware, penulisan sistem cloud, hingga pelayanan teknisi purna jual yang profesional dan konsisten.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- TELEMETRY SYSTEM INTEGRATION BLOCK -->
             <section class="py-20 bg-gradient-to-b from-darkbg to-black/30 border-b border-white/5">
                 <div class="max-w-4xl mx-auto text-center px-4">
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-4">Sistem Terintegrasi Skala Industri Terpercaya</h2>
@@ -520,6 +572,7 @@
                 </div>
             </section>
 
+            <!-- FAQ ACCORDION SECTION -->
             <section class="py-20 relative bg-darkbg/60 border-b border-white/5">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center max-w-3xl mx-auto mb-16">
@@ -706,7 +759,7 @@
                                     <span id="home-faq-icon-16" class="text-cybergreen font-bold text-lg inline-block transition-transform duration-300">+</span>
                                 </button>
                                 <div id="home-faq-content-16" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
-                                    Umumnya cocok untuk sektor mining, pertanian, dan berbagai aplikasi industri lain yang butuh monitoring jarak jauh, pencatatan data berkelanjutan, dan alarm/peringatan otomatis.
+                                    Umumnya cocok untuk sektor mining, pertanian, dan berbagai aplikasi industri lain yang butuh monitoring jarak jauh, pencatatan data berkelanjutan, and alarm/peringatan otomatis.
                                 </div>
                             </div>
 
@@ -737,6 +790,7 @@
             </section>
         </div>
 
+        <!-- VIEW SOLUSI PAGE -->
         <div id="view-solusi" class="view-pane">
             <section class="py-12 md:py-20 relative">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -893,6 +947,7 @@
             </section>
         </div>
 
+        <!-- VIEW KEUNGGULAN PAGE -->
         <div id="view-keunggulan" class="view-pane">
             <section class="py-12 md:py-20 relative">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -980,6 +1035,7 @@
             </section>
         </div>
 
+        <!-- VIEW KONTAK PAGE -->
         <div id="view-kontak" class="view-pane">
             <section class="py-12 md:py-20 relative bg-[radial-gradient(ellipse_at_bottom,rgba(0,255,102,0.02),transparent_60%)]">
                 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1269,16 +1325,16 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </section>
         </div>
 
     </main>
 
+    <!-- FOOTER -->
     <footer class="bg-darkbg text-slate-500 text-xs sm:text-sm py-12 border-t border-white/5 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
@@ -1349,13 +1405,16 @@
         </div>
     </div>
 
+    <!-- ALWAYS-ON FLOATING WHATSAPP BUTTON WITH SUBTLE RADAR SONAR EFFECT -->
     <a href="https://wa.me/6282240551268?text=Halo%20PT%20AMAN%2C%20saya%20tertarik%20dengan%20solusi%20IoT%20dan%20sensor%20telemetri%20di%20sensorwarning.co.id" 
        target="_blank" 
        rel="noopener noreferrer"
        class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl transition-all duration-300 hover:scale-110 hover:bg-[#20ba5a] active:scale-95 group focus:outline-none"
        aria-label="Hubungi Kami Via WhatsApp">
         
-        <span class="absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75 animate-ping pointer-events-none group-hover:opacity-40"></span>
+        <!-- Subtle radar pulses -->
+        <span class="absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-40 sonar-wave-1 pointer-events-none"></span>
+        <span class="absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-25 sonar-wave-2 pointer-events-none"></span>
         
         <svg class="w-7 h-7 relative z-10 fill-current" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.703 1.456h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
